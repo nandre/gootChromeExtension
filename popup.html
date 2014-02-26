@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Goot</title>
+    <style>
+      body {
+        min-width: 250px;
+        overflow-x: hidden;
+		
+        padding: 10px;
+      }
+
+      img {
+        margin: 5px;
+        border: 2px solid white;
+        vertical-align: middle;
+        width: 125px;
+        height: 125px;
+      }
+	  
+	  #contentType {
+		font-size: 10px;
+	  }
+	  
+    </style>
+	<script src="bootstrap/js/jquery.js"></script>
+    <script src="popup.js"></script>
+	<script src="fb.js"></script>
+	
+	
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+	  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="http://goot.cfapps.io/#">Goot</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://goot.cfapps.io/about">About</a></li>
+              <li><a href="http://goot.cfapps.io/contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="http://goot.cfapps.io" class="dropdown-toggle" data-toggle="dropdown">Parameters<b class="caret"></b></a>
+                <ul id="dropdown-menu-a" class="dropdown-menu">
+				  <!--
+					Some submenus might be prepend here by javascript calls (ex : button to show preview)
+				  -->
+                  <li class="nav-header">Your account</li>
+                  <li><a href="http://goot.cfapps.io">Manage my account</a></li>
+                  <li><a href="#" id="disconnect_btn">Disconnect</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form pull-right" id="sub-menu-login">
+<!--          <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+-->			  
+			  <!-- 
+				It's important to precise the ".gsp" in the redirect_url parameter because facebook redirects with an anchor (#) parameter 
+				which cannot be treated on server side. 
+				So we redirect to the view (.gps) to change the "#" parameter to a "?" to make the request able to be managed on server side. 
+				When the JS treatment is done on the url, the page is reloaded by JS (window.location changed) and processed on the server.
+			  -->
+			  
+			  <a class="btn" id="fb_btn" target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=430736073677176&response_type=token&scope=email&redirect_uri=http://goot.cfapps.io/facebookUser/syncFacebookUser.gsp">Connect with Facebook</a></p>
+
+              <!-- button id="fb-auth" class="btn">Sign in</button> -->
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+	 <div class="row">
+		<div id="user-info"></div>
+	 </div>
+
+	 <!-- Main frame -->
+      <div class="hero-unit">
+        <h4>QR-Code ready to share!</h4>
+		<img id="QRCodeImage" alt="Scan me if you dare !" src=""/>
+        <p id="contentType"></p>
+        <p><a href="http://twitter.github.com/bootstrap/examples/hero.html#" class="btn btn-primary btn-small">Share on FB »</a></p>
+      </div>
+
+      <hr>
+
+	 
+        <div class="ytpreview" style="display : none; margin-bottom: 10px;">
+          <h2>Youtube Preview</h2>
+          <div id="preview"></div>
+        </div>
+		
+		<div class="ytpreview" style="display: none">
+			<div style="max-width: 250px; margin: 0 auto 0px;">
+				<button type="button" class="btn btn-small">View details »</a>
+		     	<button style="margin-left  : 4px" type="button" class="btn btn-small btn-danger"id="closePreview">Close preview</button>
+			</div>
+		</div>
+	  
+      <footer>
+        <p>Goot 2013</p>
+      </footer>
+
+    </div>
+ 
+	
+
+	
+	    <!-- javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	 <!-- Facebook features initialization -->
+		<div id="fb-root"></div>
+			
+  </body>
+</html>
+
