@@ -8,16 +8,27 @@
 },
 "content_scripts": [
 	 {
-	 "matches": ["*://*.goot.cfapps.io/facebookUser/syncFacebookUser?*"], //The page(s) where the content scripts will fire
+	 "matches": ["*://goot.outsidethecircle.eu/facebookUser/syncFacebookUser?*"], //The page(s) where the content scripts will fire
 	 "js": ["savetoken.js"],
 	 "all_frames": true,
 	 "run_at": "document_start"
-	 }
+	 },
+	 {
+	 "matches": ["*://*/*"], //add script to every page, this is for styling the comments
+	 "css" : ["/record-comments/injected_style.css"]
+	 }, 
+	 {
+	 "matches": [ "*://*/*"],
+     "js": [ "bootstrap/js/jquery.js"]
+  	 }
  ],
 "permissions": [
     "tabs",
 	"https://graph.facebook.com/*",
-	"https://facebook.com/connect/*"
+	"https://facebook.com/connect/*",
+	"http://*/",
+	"https://*/", 
+	"contextMenus"
   ],
 "content_security_policy": "script-src 'self' https://connect.facebook.net; object-src 'self'",
 "content_security_policy": "script-src 'self' https://graph.facebook.com; object-src 'self'",
@@ -25,5 +36,8 @@
     {
 		"default_icon" : "icon.png",
         "default_popup": "popup.html"
-    }
+    },
+"web_accessible_resources": ["injected_script.js", 
+							 "record-comments/record.js", 
+							 "record-comments/record.html"]
 }

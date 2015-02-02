@@ -2,6 +2,7 @@ var size='200x200';
 var qrCodeGeneratorUrl = 'http://api.qrserver.com/v1/create-qr-code/?size=' + size + '&data=';
 var currentPageUrl;
 
+
 var QRCodeGenerator = {
       
    /**
@@ -13,21 +14,23 @@ var QRCodeGenerator = {
    /**********************/
    
 	parseURL_:function(url) {
-		console.log(url.match(/http:\/\/(:?www.)?(\w*)/));
+		console.log("url : " + url);
 		
 		var provider = '';
 		try {
-		  provider = url.match(/http:\/\/(:?www.)?(\w*)/)[2];
+		  provider = url.match(/https?:\/\/(:?www.)?(\w*)/)[2];
 		}
 		catch(err)
 		  {}
 		
 		var id;
-
+		
+		console.log('provider : ' + provider);
+		
 		if(provider == "youtube") {
-			console.log(url.match(/http:\/\/(?:www.)?(\w*).(com|fr)\/.*v=(\w*)/));
+			console.log(url.match(/https?:\/\/(?:www.)?(\w*).(com|fr)\/.*v=(\w*)/));
 			
-			id = url.match(/http:\/\/(?:www.)?(\w*).(com|fr)\/.*v=(\w*)/)[3];
+			id = url.match(/https?:\/\/(?:www.)?(\w*).(com|fr)\/.*v=(\w*)/)[3];
 			if(id.length > 0){
 				$('#dropdown-menu-a').prepend('<li><a href="#" id="showYoutubePreviewButton">Show preview</a></li><li class="divider"></li>');
 				document.getElementById('contentType').innerHTML = '<a href="#" id="showYoutubePreviewLink">Check phone rendering</a>';
@@ -42,8 +45,11 @@ var QRCodeGenerator = {
 				});
 			}
 		} else if (provider == "vimeo") {
-			id = url.match(/http:\/\/(?:www.)?(\w*).com\/(\d*)/)[2];
+			id = url.match(/https?:\/\/(?:www.)?(\w*).com\/(\d*)/)[2];
 			document.getElementById('contentType').innerHTML = "Vimeo content detected";
+		} else if (url.match("^http://goot.outsidethecircle.eu")) {
+			document.getElementById('contentType').innerHTML = "Shareception spotted !";
+			console.log("Shareception spotted !");  
 		} else {
 			console.log("No special format url detected");    
 		}
@@ -139,12 +145,103 @@ document.addEventListener('DOMContentLoaded', function () {
   
 });
 
-//might be replaced by $(document).ready(function(){ ... });
+
+// Initial state at beginning
 $(document).ready(function(){
+	console.log("initial load on document ready");	 
+	
+	$("#share-fb-btn").hide();
+	$("#add-goot-btn").hide();
+	$("#record-comment-btn").hide();
+	
+
+	if(localStorage.accessToken){
+		$("#share-fb-btn").show();
+		$("#add-goot-btn").show();
+		$("#record-comment-btn").show();
+	} else if(localStorage.JSESSSIONID){
+		$("#add-goot-btn").show();
+		$("#record-comment-btn").show();
+	}
+
+	// disconnect button
 	$("#disconnect_btn").click(function(){
 		localStorage.removeItem('accessToken');
+		localStorage.removeItem('JSESSSIONID');
+		
+		$("#share-fb-btn").hide();
+		$("#add-goot-btn").hide();
+		$("#record-comment-btn").hide();
+		
+		
 		$('#fb_btn').show();
+		$('#sub-menu-login-goot').show();
+		$('#sub-menu-login-fb').show();
+		
 		alert('You\'ve been disconnected');
 	});
+	
+	$("#record-comment-btn").click(function(){		
+		// same action as contextual menu, add record comment menu to page
+		chrome.tabs.executeScript(null, {file: "record-comments/record.js"});
+		
+	});
+	
+	
+		// Method to create an invoice but don't start autopolling on it. 
+	$('#connect_btn').click(function(){
+		ajaxConnect();
+	});	
+	
+	//injectScriptIntoPage("injected_script.js");
+	//injectScriptIntoPage("bootstrap/js/jquery.js");
+	
 });
+
+
+function ajaxConnect(){
+
+	var username = $('#username').val();
+	var password = $('#password').val();
+
+	$.ajax({
+			url: "http://goot.outsidethecircle.eu/plugin/connect",
+			dataType: 'json',
+			type:"POST",
+			contentType: 'application/json',
+			data: { username: username, password: password },
+			error: function(data) {
+				console.log("error in ajax call");
+			}, 
+			success:function(data){
+				console.log("successful ajax call");
+				if(data.responseText != "error"){
+					//add JSESSIONID in localStorage
+					localStorage.JSESSIONID = data.responseText;
+					//add JSESSIONID in the cookie
+					document.cookie="JSESSIONID=" + localStorage.JSESSIONID;
+					
+					$('#fb_btn').hide();
+					$('#sub-menu-login-goot').hide();
+					$('#sub-menu-login-fb').hide();
+					
+					//we should get user infos from server here
+					//$('#contenu_fichier_ajax').text(data);
+				} else {
+					//connection failed
+				}
+			}
+		});
+}
+
+
+//This function has been replaced by the event in background.js
+function injectScriptIntoPage(scriptPath){ 
+	var s = document.createElement('script');
+	s.src = chrome.extension.getURL(scriptPath);
+	s.onload = function() {
+	    this.parentNode.removeChild(this);
+	};
+	(document.head||document.documentElement).appendChild(s);
+}
 

@@ -1,16 +1,21 @@
 
-alert('You are now connected through your facebook account !');
+alert('You are now connected with your facebook account');
 
 window.addEventListener("message", function(event) {
 	console.log('Plugin event listener running...');
+
     // We only accept messages from our extension (security check)
     if (event.source != window)
       return;
 
     if (event.data.type && (event.data.type == "FROM_PAGE")) {
       console.log("accessToken passed by content script : " + event.data.accessToken);
+      console.log("JSESSIONID passed by content script : " + event.data.JSESSIONID);
+	  console.log("All data passed : " + event.data);
+	  
 	   var payload = {
-		accessToken: event.data.accessToken    // Pass the access token in a payload
+		accessToken: event.data.accessToken,    // Pass the access token in a payload
+		JSESSIONID: event.data.JSESSIONID		// Pass the JSESSIONID in the payload
 	  };
 	  //we send the received message to the chrome extension
 	  chrome.extension.sendRequest(payload, function(response) {});
