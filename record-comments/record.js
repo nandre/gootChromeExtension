@@ -145,16 +145,18 @@ function snapshot() {
 		    var newImg = document.createElement("img"); // create img tag
 		    newImg.src = url;
 		    newImg.setAttribute("id", "snapshot_" + snapshotIncrementalId);
+		    newImg.setAttribute("class", "snapshot_image");
+
+		    newImg.onclick = function(){
+		    	gootAlias('.selected').removeClass('selected');
+		    	gootAlias(this).addClass('selected');
+		    	gootAlias('#add-image-comment-btn').show();
+		    	gootAlias('#imageToSave').val(gootAlias(this).attr('src'));
+		    };
 		    
 		    snapshotIncrementalId += 1;
 
 		    gootAlias("#goot-snapshot").prepend(newImg);
-		      
-		    //gootAlias("#goot-snapshot").height(h);
-		    
-		    //gootAlias("#goot-snapshot").attr("src", canvas[0].toDataURL('image/webp'));
-		    //gootAlias("#goot-snapshot").load();		      
-		   
 
     }
   }
@@ -245,6 +247,18 @@ function initVars(){
 		changeFilter(this);
 	});
 	
+	gootAlias('#add-image-comment-btn').click(function(){ 
+		console.log("save image comment button clicked");
+		addImageCommentToPage();
+	});
+	
+	
+	gootAlias('#add-text-comment-btn').click(function(){ 
+		console.log("save text comment button clicked");
+		addTextCommentToPage();
+	});
+	
+	
 		
 }
 
@@ -258,3 +272,87 @@ window.addEventListener('keydown', function(e) {
     document.querySelector('details').open = false;
   }
 }, false);
+
+
+
+
+
+function addImageCommentToPage(){
+
+	var currentTabUrl = document.URL;
+	document.cookie="JSESSIONID=" + JSESSIONID;
+	
+	var image = gootAlias('#imageToSave').val();
+	console.log("current tab url : " + currentTabUrl);
+	console.log("image blob : " + image);
+	
+	gootAlias.ajax({
+			url: "http://goot.outsidethecircle.eu/plugin/comment/image",
+			dataType: 'json',
+			type:"POST",
+			contentType: 'application/json',
+			crossDomain: true,
+			xhrFields: {
+			    withCredentials: true
+			},
+			data: JSON.stringify({ image : image, tabUrl : currentTabUrl}),
+			error: function(data) {
+				if(data.responseText == "success"){					
+					alert('Image comment added');
+				} else {
+					alert('Adding image comment failed');
+				}
+			}, 
+			success:function(data){
+				console.log("successful ajax call");
+				if(data.responseText == "success"){					
+					alert('Image comment added');
+				} else {
+					alert('Adding image comment failed');
+				}
+			}
+		});
+}
+
+
+function addTextCommentToPage(){
+
+	var currentTabUrl = document.URL;
+	document.cookie="JSESSIONID=" + JSESSIONID;
+	
+	var text = gootAlias('#text-comment').val();
+	if(text == null || text.length == 0){
+		alert("Please enter text comment");
+		return;
+	}
+	
+	console.log("current tab url : " + currentTabUrl);
+	console.log("text : " + text);
+	
+	gootAlias.ajax({
+			url: "http://goot.outsidethecircle.eu/plugin/comment/text",
+			dataType: 'json',
+			type:"POST",
+			contentType: 'application/json',
+			crossDomain: true,
+			xhrFields: {
+			    withCredentials: true
+			},
+			data: JSON.stringify({ text : text, tabUrl : currentTabUrl}),
+			error: function(data) {
+				if(data.responseText == "success"){					
+					alert('Text comment added');
+				} else {
+					alert('Adding text comment failed');
+				}
+			}, 
+			success:function(data){
+				console.log("successful ajax call");
+				if(data.responseText == "success"){					
+					alert('Text comment added');
+				} else {
+					alert('Adding text comment failed');
+				}
+			}
+		});
+}

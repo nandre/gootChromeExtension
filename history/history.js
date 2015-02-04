@@ -1,17 +1,19 @@
+var currentTabUrl;
+
 $(document).ready(function(){
 	$('#add-goot-btn').click(function(){
 		addCurrentTabToFav();
 	});
 });
 
+chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+    console.log("tab url : " + tabs[0].url);
+    currentTabUrl = tabs[0].url;
+});
+
 
 function getCurrentTabUrl(){
-	var url = null;
-	chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-	   url = tabs[0].url;
-	});
-	return url;
-	
+	return currentTabUrl;
 }
 
 function addCurrentTabToFav(){
@@ -19,7 +21,7 @@ function addCurrentTabToFav(){
 	var currentTabUrl= getCurrentTabUrl();
 	var JSESSIONID = localStorage.JSESSIONID;
 
-	console.log("current tab url : " + currentPageUrl);
+	console.log("current tab url : " + currentTabUrl);
 
 	$.ajax({
 			url: "http://goot.outsidethecircle.eu/plugin/link/add",
@@ -30,18 +32,21 @@ function addCurrentTabToFav(){
 			xhrFields: {
 			    withCredentials: true
 			},
-			data: { JSESSIONID : JSESSIONID, url : currentTabUrl},
+			data: JSON.stringify({ JSESSIONID : JSESSIONID, tabUrl : currentTabUrl}),
 			error: function(data) {
-				console.log("error in ajax call");
+				console.log("going in ajax error treatment");
+				if(data.responseText == "success"){
+					alert('Url successfully added to favorites');
+				} else {
+					alert('Adding url to favorites failed');
+				}
 			}, 
 			success:function(data){
 				console.log("successful ajax call");
-				if(data.responseText != "error"){
-					//localStorage.JSESSIONID = data.responseText;
-					
+				if(data.responseText == "success"){
 					alert('Url successfully added to favorites');
 				} else {
-					//connection failed
+					alert('Adding url to favorites failed');
 				}
 			}
 		});

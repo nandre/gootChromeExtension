@@ -1,5 +1,5 @@
 	<!--  Load record-comments content -->
-	<div id="camera-record-content">
+	<div id="record-content">
 		<div id="record-video-comment">
 			<section id="goot-app-video" style="display: none;">
 				<div class="goot-video-container">
@@ -12,12 +12,18 @@
 			<p>
 				<button id="init-camera-btn">Capture Image</button>
 				<button id="goot-snapshot-btn" style="display: none;">Snapshot</button>
+				<button id="add-image-comment-btn" style="display: none;">Add image comment to page</button>
 			</p>
 			 <div id="splash">
 			  <p id="errorMessage"></p>
 			 </div>
 			<div id="gallery"></div>
-			<div id="goot-snapshot">
+			<div id="goot-snapshot"></div>
 			<canvas id="photo" style="display : none;"></canvas>
+			<input type="hidden" id="imageToSave" name="imageToSave"></input>
+		</div>
+		<div id="record-text-comment">
+			<input type="text" name="text-comment" id="text-comment"></input>
+			<button id="add-text-comment-btn">Add text comment to page</button>
 		</div>
 	</div>
