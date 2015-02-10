@@ -1,7 +1,7 @@
 var currentTabUrl;
 
-$(document).ready(function(){
-	$('#add-goot-btn').click(function(){
+gootAlias(document).ready(function(){
+	gootAlias('#add-goot-btn').click(function(){
 		addCurrentTabToFav();
 	});
 });
@@ -22,32 +22,16 @@ function addCurrentTabToFav(){
 	var JSESSIONID = localStorage.JSESSIONID;
 
 	console.log("current tab url : " + currentTabUrl);
+	var url = "http://goot.outsidethecircle.eu/plugin/link/add";
+	var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
+	
+	gootAjaxCall(url, data, historyCallback);
+}
 
-	$.ajax({
-			url: "http://goot.outsidethecircle.eu/plugin/link/add",
-			dataType: 'json',
-			type:"POST",
-			contentType: 'application/json',
-			crossDomain: true,
-			xhrFields: {
-			    withCredentials: true
-			},
-			data: JSON.stringify({ JSESSIONID : JSESSIONID, tabUrl : currentTabUrl}),
-			error: function(data) {
-				console.log("going in ajax error treatment");
-				if(data.responseText == "success"){
-					alert('Url successfully added to favorites');
-				} else {
-					alert('Adding url to favorites failed');
-				}
-			}, 
-			success:function(data){
-				console.log("successful ajax call");
-				if(data.responseText == "success"){
-					alert('Url successfully added to favorites');
-				} else {
-					alert('Adding url to favorites failed');
-				}
-			}
-		});
+function historyCallback(data){
+	if(data.responseText == "success"){
+		alert('Url successfully added to favorites');
+	} else {
+		alert('Adding url to favorites failed');
+	}
 }

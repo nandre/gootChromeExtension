@@ -2,7 +2,6 @@ var size='200x200';
 var qrCodeGeneratorUrl = 'http://api.qrserver.com/v1/create-qr-code/?size=' + size + '&data=';
 var currentPageUrl;
 
-
 var QRCodeGenerator = {
       
    /**
@@ -32,15 +31,15 @@ var QRCodeGenerator = {
 			
 			id = url.match(/https?:\/\/(?:www.)?(\w*).(com|fr)\/.*v=(\w*)/)[3];
 			if(id.length > 0){
-				$('#dropdown-menu-a').prepend('<li><a href="#" id="showYoutubePreviewButton">Show preview</a></li><li class="divider"></li>');
+				gootAlias('#dropdown-menu-a').prepend('<li><a href="#" id="showYoutubePreviewButton">Show preview</a></li><li class="divider"></li>');
 				document.getElementById('contentType').innerHTML = '<a href="#" id="showYoutubePreviewLink">Check phone rendering</a>';
-				$('#showYoutubePreviewButton').click(function(){
+				gootAlias('#showYoutubePreviewButton').click(function(){
 					showPreview("youtube",id);
 				});
-				$('#showYoutubePreviewLink').click(function(){
+				gootAlias('#showYoutubePreviewLink').click(function(){
 					showPreview("youtube",id);
 				});
-				$('#closePreview').click(function(){
+				gootAlias('#closePreview').click(function(){
 					closePreview("youtube");
 				});
 			}
@@ -120,10 +119,10 @@ function showPreview(contentType,id){
 	console.log('ShowPreview function called');
 	
 	if(contentType == 'youtube'){
-		$('.ytpreview').slideDown()
+		gootAlias('.ytpreview').slideDown()
 		document.getElementById('preview').innerHTML = "<iframe id='ytplayer' type='text/html' width='640' height='390' src='http://www.youtube.com/embed/" + id + "?autoplay=1' frameborder='0'/>";
-		$('html, body').animate({
-		   scrollTop: $("#ytplayer").offset().top
+		gootAlias('html, body').animate({
+		   scrollTop: gootAlias("#ytplayer").offset().top
 		}, 2000);
 	}
 
@@ -131,7 +130,7 @@ function showPreview(contentType,id){
 
 function closePreview(contentType){
 	if(contentType == 'youtube'){
-		$('.ytpreview').slideUp();
+		gootAlias('.ytpreview').slideUp();
 		document.getElementById('preview').innerHTML = "";
 	}
 }
@@ -147,91 +146,89 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Initial state at beginning
-$(document).ready(function(){
+gootAlias(document).ready(function(){
 	console.log("initial load on document ready");	 
 	
-	$("#share-fb-btn").hide();
-	$("#add-goot-btn").hide();
-	$("#record-comment-btn").hide();
+	gootAlias("#share-fb-btn").hide();
+	gootAlias("#add-goot-btn").hide();
+	gootAlias("#record-comment-btn").hide();
 	
 
 	if(localStorage.accessToken){
-		$("#share-fb-btn").show();
-		$("#add-goot-btn").show();
-		$("#record-comment-btn").show();
+		gootAlias("#share-fb-btn").show();
+		gootAlias("#add-goot-btn").show();
+		gootAlias("#record-comment-btn").show();
 	} else if(localStorage.JSESSSIONID){
-		$("#add-goot-btn").show();
-		$("#record-comment-btn").show();
+		gootAlias("#add-goot-btn").show();
+		gootAlias("#record-comment-btn").show();
 	}
 
 	// disconnect button
-	$("#disconnect_btn").click(function(){
+	gootAlias("#disconnect_btn").click(function(){
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('JSESSSIONID');
 		
-		$("#share-fb-btn").hide();
-		$("#add-goot-btn").hide();
-		$("#record-comment-btn").hide();
+		gootAlias("#share-fb-btn").hide();
+		gootAlias("#add-goot-btn").hide();
+		gootAlias("#record-comment-btn").hide();
 		
 		
-		$('#fb_btn').show();
-		$('#sub-menu-login-goot').show();
-		$('#sub-menu-login-fb').show();
+		gootAlias('#fb_btn').show();
+		gootAlias('#sub-menu-login-goot').show();
+		gootAlias('#sub-menu-login-fb').show();
 		
 		alert('You\'ve been disconnected');
 	});
 	
-	$("#record-comment-btn").click(function(){		
+	//Add all scripts necessary to add comments
+	gootAlias("#record-comment-btn").click(function(){		
 		// same action as contextual menu, add record comment menu to page
 		chrome.tabs.executeScript(null, {file: "record-comments/record.js"});
-		
-	});
-	
-	
-		// Method to create an invoice but don't start autopolling on it. 
-	$('#connect_btn').click(function(){
-		ajaxConnect();
+		chrome.tabs.executeScript(null, {file: "record-drawings/ajax.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/canvas-rendering.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/draw.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/drawings.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/jscolor.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/mouse-drawing.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/picker.js"});
+		chrome.tabs.executeScript(null, {file: "record-drawings/shapes.js"});
 	});	
 	
-	//injectScriptIntoPage("injected_script.js");
-	//injectScriptIntoPage("bootstrap/js/jquery.js");
+		// Method to create an invoice but don't start autopolling on it. 
+	gootAlias('#connect_btn').click(function(){
+		ajaxConnect();
+	});	
 	
 });
 
 
 function ajaxConnect(){
 
-	var username = $('#username').val();
-	var password = $('#password').val();
+	var username = gootAlias('#username').val();
+	var password = gootAlias('#password').val();
 
-	$.ajax({
-			url: "http://goot.outsidethecircle.eu/plugin/connect",
-			dataType: 'json',
-			type:"POST",
-			contentType: 'application/json',
-			data: { username: username, password: password },
-			error: function(data) {
-				console.log("error in ajax call");
-			}, 
-			success:function(data){
-				console.log("successful ajax call");
-				if(data.responseText != "error"){
-					//add JSESSIONID in localStorage
-					localStorage.JSESSIONID = data.responseText;
-					//add JSESSIONID in the cookie
-					document.cookie="JSESSIONID=" + localStorage.JSESSIONID;
-					
-					$('#fb_btn').hide();
-					$('#sub-menu-login-goot').hide();
-					$('#sub-menu-login-fb').hide();
-					
-					//we should get user infos from server here
-					//$('#contenu_fichier_ajax').text(data);
-				} else {
-					//connection failed
-				}
-			}
-		});
+	var data = { username: username, password: password };
+	var url = "http://goot.outsidethecircle.eu/plugin/connect";
+	
+	gootAjaxCall(url, data, connectionCallback);
+}
+
+
+function connectionCallback(data){ 
+	if(data.responseText != "error"){
+		//add JSESSIONID in localStorage
+		localStorage.JSESSIONID = data.responseText;
+		//add JSESSIONID in the cookie
+		document.cookie="JSESSIONID=" + localStorage.JSESSIONID;
+		
+		gootAlias('#fb_btn').hide();
+		gootAlias('#sub-menu-login-goot').hide();
+		gootAlias('#sub-menu-login-fb').hide();
+		
+		//we should get user infos from server here
+	} else {
+		//connection failed
+	}
 }
 
 

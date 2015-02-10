@@ -8,7 +8,9 @@ window.addEventListener("message", function(event) {
     if (event.source != window)
       return;
 
-    if (event.data.type && (event.data.type == "FROM_PAGE")) {
+    console.log("event.data.type : " + event.data.type);
+    
+    if (event.data.type && (event.data.type == "GOOT_PAGE_TYPE")) {
       console.log("accessToken passed by content script : " + event.data.accessToken);
       console.log("JSESSIONID passed by content script : " + event.data.JSESSIONID);
 	  console.log("All data passed : " + event.data);

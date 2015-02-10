@@ -1,8 +1,9 @@
 #goot_nav { 
 	padding: 25px 0;
 	background-color: slategrey;
-	height : auto;
-	z-index: 100;
+	height : 100px;
+	z-index: 100000;
+	overflow: visible;
 }
 
 #init-camera-btn { 
@@ -15,18 +16,61 @@
 	width: 100%;
 	left: 0;
 	top: 0;
-	z-index: 100;
+	z-index: 100000;
+	border-top: 0;
+}
+
+.sticky_picker {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	padding-top : 150px;
+	z-index: 99999;
 	border-top: 0;
 }
 
 img.snapshot_image{border:solid 2px grey; margin:10px;}
-.selected{
+.goot_selected {
     box-shadow:0px 12px 22px 1px #333;
 }
 
 
+ #record-video-comment { 
+ 	position : relative;
+ 	width : 300px;
+ 	float : right;
+ }
+ 
+  #goot-snapshot { 
+ 	position : relative;
+ 	width : 400px;
+ 	float : left;
+ }
+ 
+ #record-text-comment { 
+ 	position : relative;
+ 	width : 200px;
+ 	clear : both;
+ 	float : left;
+ }
 
+#goot-left-block {
+  display : block;
+  width : 300px;
+  float: left;
+}
 
+#goot-middle-block {
+  display : block;
+  width : 400px;
+  float: left;
+}
+
+#goot-right-block { 
+  display : block;
+  float: right;
+}
 
 @-webkit-keyframes glowRed {
   from {
@@ -42,7 +86,10 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
 
 #monitor {
   /*-webkit-transform: scaleX(-1);*/
-  height: 150px;
+  height: 120px;
+  margin-top : -20px;
+  margin-right : 60px;
+  float : right;
   /*-webkit-box-reflect: below 20px -webkit-linear-gradient(top, transparent, transparent 80%, rgba(255,255,255,0.2));*/
 }
 #live {
@@ -51,8 +98,8 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
   color: white;
   font-weight: 600;
   font-family: Arial;
-  font-size: 16pt;
-  right: 35px;
+  font-size: 8pt;
+  right: 60px;
   top: 20px;
   text-shadow: 1px 1px red;
   letter-spacing: 1px;
@@ -60,8 +107,8 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
 #live:before {
   content: '';
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   background: red;
   position: absolute;
   left: -20px;

@@ -1,7 +1,8 @@
 navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.getUserMedia;
 window.URL = window.URL || window.webkitURL;
 
-//change jquery alias by brand new one for goot
+window.serverURL = "http://goot.outsidethecircle.eu/";
+
 var gootAlias = jQuery.noConflict();
 
 var app = null;
@@ -148,8 +149,8 @@ function snapshot() {
 		    newImg.setAttribute("class", "snapshot_image");
 
 		    newImg.onclick = function(){
-		    	gootAlias('.selected').removeClass('selected');
-		    	gootAlias(this).addClass('selected');
+		    	gootAlias('.goot_selected').removeClass('goot_selected_goot');
+		    	gootAlias(this).addClass('goot_selected');
 		    	gootAlias('#add-image-comment-btn').show();
 		    	gootAlias('#imageToSave').val(gootAlias(this).attr('src'));
 		    };
@@ -184,18 +185,27 @@ function init_camera(el) {
  * @returns
  */
 function addRecordBar(){
+		gootAlias("body").prepend("<div id='goot_color_picker'></div>");
+		
 		gootAlias("body").prepend("<div id='goot_nav'></div>");
-
+		
 		var stickyNavTop = gootAlias('#goot_nav').offset().top;
 
 		var stickyNav = function(){
-		var scrollTop = gootAlias(window).scrollTop();
-		     
-		if (scrollTop > stickyNavTop) { 
-		    gootAlias('#goot_nav').addClass('sticky');
-		} else {
-		    gootAlias('#goot_nav').removeClass('sticky'); 
-		}
+			var scrollTop = gootAlias(window).scrollTop();
+			     
+			if (scrollTop > stickyNavTop) { 
+			    gootAlias('#goot_nav').addClass('sticky');
+			} else {
+			    gootAlias('#goot_nav').removeClass('sticky'); 
+			}
+			
+			if (scrollTop > stickyNavTop) { 
+			    gootAlias('#goot_color_picker').addClass('sticky_picker');
+			} else {
+			    gootAlias('#goot_color_picker').removeClass('sticky_picker'); 
+			}	
+			
 		};
 
 		stickyNav();
@@ -259,6 +269,13 @@ function initVars(){
 	});
 	
 	
+	gootAlias('#init-drawing-btn').click(function(){ 
+		console.log("Draw on page button clicked");
+		init_drawings();
+	});
+	
+	
+	
 		
 }
 
@@ -286,32 +303,11 @@ function addImageCommentToPage(){
 	console.log("current tab url : " + currentTabUrl);
 	console.log("image blob : " + image);
 	
-	gootAlias.ajax({
-			url: "http://goot.outsidethecircle.eu/plugin/comment/image",
-			dataType: 'json',
-			type:"POST",
-			contentType: 'application/json',
-			crossDomain: true,
-			xhrFields: {
-			    withCredentials: true
-			},
-			data: JSON.stringify({ image : image, tabUrl : currentTabUrl}),
-			error: function(data) {
-				if(data.responseText == "success"){					
-					alert('Image comment added');
-				} else {
-					alert('Adding image comment failed');
-				}
-			}, 
-			success:function(data){
-				console.log("successful ajax call");
-				if(data.responseText == "success"){					
-					alert('Image comment added');
-				} else {
-					alert('Adding image comment failed');
-				}
-			}
-		});
+	
+	var data = { image : image, tabUrl : currentTabUrl};
+	var url = "http://goot.outsidethecircle.eu/plugin/comment/image";
+	
+	gootAjaxCall(url, data, saveImageCallback);
 }
 
 
@@ -329,30 +325,33 @@ function addTextCommentToPage(){
 	console.log("current tab url : " + currentTabUrl);
 	console.log("text : " + text);
 	
-	gootAlias.ajax({
-			url: "http://goot.outsidethecircle.eu/plugin/comment/text",
-			dataType: 'json',
-			type:"POST",
-			contentType: 'application/json',
-			crossDomain: true,
-			xhrFields: {
-			    withCredentials: true
-			},
-			data: JSON.stringify({ text : text, tabUrl : currentTabUrl}),
-			error: function(data) {
-				if(data.responseText == "success"){					
-					alert('Text comment added');
-				} else {
-					alert('Adding text comment failed');
-				}
-			}, 
-			success:function(data){
-				console.log("successful ajax call");
-				if(data.responseText == "success"){					
-					alert('Text comment added');
-				} else {
-					alert('Adding text comment failed');
-				}
-			}
-		});
+	var data = { text : text, tabUrl : currentTabUrl};
+	var url = "http://goot.outsidethecircle.eu/plugin/comment/text";
+	
+	gootAjaxCall(url, data, saveTextCallback);
+	
+}
+
+
+//CALLBACK FUNCTIONS 
+function saveTextCallback(data){
+	var successMessage= 'Text comment added';
+	var errorMessage = 'Adding text comment failed';
+	
+	saveCommentCallback(data,successMessage, errorMessage);
+}
+
+function saveImageCallback(data){
+	var successMessage= 'Image comment added';
+	var errorMessage = 'Adding image comment failed';
+	
+	saveCommentCallback(data,successMessage, errorMessage);
+}
+
+function saveCommentCallback(data, successMessage, errorMessage){
+	if(data.responseText == "success"){					
+		alert(successMessage);
+	} else {
+		alert(errorMessage);
+	}
 }

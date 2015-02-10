@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete') {
         // Execute some script when the page is fully (DOM) ready
-    	chrome.tabs.executeScript(null, {file: "injected_script.js"});
+    	chrome.tabs.executeScript(null, {file: "goot_commons.js"});
     }
 });
 
