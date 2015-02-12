@@ -2,9 +2,6 @@ var size='200x200';
 var qrCodeGeneratorUrl = 'http://api.qrserver.com/v1/create-qr-code/?size=' + size + '&data=';
 var currentPageUrl;
 
-var menus = ["main", "comment", "share", "tower", "tuto"];
-
-
 var QRCodeGenerator = {
       
    /**
@@ -25,7 +22,7 @@ var QRCodeGenerator = {
 		catch(err)
 		  {}
 		
-		var id = null;
+		var id;
 		
 		console.log('provider : ' + provider);
 		
@@ -58,7 +55,7 @@ var QRCodeGenerator = {
 		return {
 			provider : provider,
 			id : id
-		};
+		}
 	},
 	
 	
@@ -122,7 +119,7 @@ function showPreview(contentType,id){
 	console.log('ShowPreview function called');
 	
 	if(contentType == 'youtube'){
-		gootAlias('.ytpreview').slideDown();
+		gootAlias('.ytpreview').slideDown()
 		document.getElementById('preview').innerHTML = "<iframe id='ytplayer' type='text/html' width='640' height='390' src='http://www.youtube.com/embed/" + id + "?autoplay=1' frameborder='0'/>";
 		gootAlias('html, body').animate({
 		   scrollTop: gootAlias("#ytplayer").offset().top
@@ -155,23 +152,15 @@ gootAlias(document).ready(function(){
 	gootAlias("#share-fb-btn").hide();
 	gootAlias("#add-goot-btn").hide();
 	gootAlias("#record-comment-btn").hide();
-
-	//new ones, after rebranding 
-	gootAlias("#goot-main-menu-btn").hide();
-	gootAlias("#goot-menu-options").hide();
-
 	
+
 	if(localStorage.accessToken){
-		//user connected via facebook
 		gootAlias("#share-fb-btn").show();
 		gootAlias("#add-goot-btn").show();
 		gootAlias("#record-comment-btn").show();
-		gootAlias("#goot-main-menu-btn").show();
 	} else if(localStorage.JSESSSIONID){
-		//user connected via goot
 		gootAlias("#add-goot-btn").show();
 		gootAlias("#record-comment-btn").show();
-		gootAlias("#goot-main-menu-btn").show();
 	}
 
 	// disconnect button
@@ -182,14 +171,11 @@ gootAlias(document).ready(function(){
 		gootAlias("#share-fb-btn").hide();
 		gootAlias("#add-goot-btn").hide();
 		gootAlias("#record-comment-btn").hide();
-		gootAlias("#goot-menu-options").hide();
+		
 		
 		gootAlias('#fb_btn').show();
-		gootAlias('#sub-menu-login-all').show();
-		gootAlias('#goot-connect-zone-btn').fadeIn();
-		
-		gootAlias('#goot-main-menu-btn').hide();
-		gootAlias('#disconnect_btn').hide();
+		gootAlias('#sub-menu-login-goot').show();
+		gootAlias('#sub-menu-login-fb').show();
 		
 		alert('You\'ve been disconnected');
 	});
@@ -208,121 +194,12 @@ gootAlias(document).ready(function(){
 		chrome.tabs.executeScript(null, {file: "record-drawings/shapes.js"});
 	});	
 	
-	gootAlias('#goot-connect-zone-btn').click(function(){
-		  if ( gootAlias('#sub-menu-login-all').is(":hidden")) {
-			  	gootAlias('#sub-menu-login-all').slideDown( "slow" );
-			  } else {
-				gootAlias('#sub-menu-login-all').fadeOut();
-			  }
-	});
-	
-	// Method to create an invoice but don't start autopolling on it. 
+		// Method to create an invoice but don't start autopolling on it. 
 	gootAlias('#connect_btn').click(function(){
 		ajaxConnect();
 	});	
 	
-	
-	// could be done by looping on menus
-	gootAlias('#goot-tuto-menu-btn').click(function(){
-		toggleTutoMenu();
-	});	
-	
-	gootAlias('#goot-tower-menu-btn').click(function(){
-		toggleTowerMenu();
-	});	
-	
-	gootAlias('#goot-share-menu-btn').click(function(){
-		toggleShareMenu();
-	});	
-	
-	gootAlias('#goot-comment-menu-btn').click(function(){
-		toggleCommentMenu();
-	});	
-	
-	gootAlias('#goot-main-menu-btn').click(function(){
-		toggleMainMenu();
-	});	
-	
-	
-	
 });
-
-function hideAllButSelectedMenu(selectedMenu){
-		
-	if(gootAlias("#goot-" + selectedMenu +"-menu").is(":hidden")){
-		//make sure connection menu is hidden
-		gootAlias("#sub-menu-login-all").fadeOut();
-		//hide connection/disconnection bar if not hidden
-		gootAlias("#goot-topbar-connection").slideUp();
-		//hide the multi-options bar 
-		gootAlias("#goot-menu-options").hide("slide", { direction: "right" }, 500, function(){
-			gootAlias("#goot-menu-contextual-" + selectedMenu).show("slide", { direction: "right" }, 500);
-		});
-		//show the proprer context bar
-		//display content for selectedMenu
-		gootAlias("#goot-" + selectedMenu + "-menu").slideDown();
-	} else {
-		gootAlias("#goot-topbar-connection").slideUp();
-		gootAlias("#goot-" + selectedMenu + "-menu").slideUp();
-		gootAlias("#goot-menu-contextual-" + selectedMenu).hide("slide", { direction: "right" }, 500);
-	}
-}
-
-function toggleTutoMenu(){
-	hideAllButSelectedMenu("tuto");
-}
-
-function toggleTowerMenu(){
-	hideAllButSelectedMenu("tower");
-}
-
-function toggleShareMenu(){
-	hideAllButSelectedMenu("share");
-}
-
-function toggleCommentMenu(){ 
-	hideAllButSelectedMenu("comment");
-}
-
-function toggleMainMenu(){ 
-	var l = menus.length;
-	
-	if(gootAlias("#goot-menu-options").is(":hidden")){
-		gootAlias("#sub-menu-login-all").fadeOut();
-		gootAlias("#goot-topbar-connection").slideUp();
-
-		var hiddingMenuCounter = 0;
-		 
-		for(var i = 0; i < l; i++) {
-		    var menu = menus[i];
-		   
-		    try {
-		    	gootAlias("#goot-" + menu + "-menu").fadeOut();
-		    	gootAlias("#goot-menu-contextual-" + menu).hide("slide", { direction: "right" }, 500, function(){
-		    		hiddingMenuCounter = hiddingMenuCounter + 1;
-					if(hiddingMenuCounter >= l-2){
-						gootAlias("#goot-menu-options").show("slide", { direction: "right" }, 500);
-					}
-		    	});
-		    }catch(e){}
-		}
-		
-		
-	} else {
-		gootAlias("#goot-menu-options").hide("slide", { direction: "right" }, 500, function(){
-			for(var i = 0; i < l; i++) {
-			    var menu = menus[i];
-			    try {
-			    	gootAlias("#goot-" + menu +"-menu").fadeOut();
-			    }catch(e){}
-			}
-			gootAlias("#goot-topbar-connection").show("slide", { direction: "up" }, 500);
-
-		});
-	}
-		
-
-}
 
 
 function ajaxConnect(){
@@ -345,7 +222,8 @@ function connectionCallback(data){
 		document.cookie="JSESSIONID=" + localStorage.JSESSIONID;
 		
 		gootAlias('#fb_btn').hide();
-		gootAlias('#sub-menu-login-all').hide();
+		gootAlias('#sub-menu-login-goot').hide();
+		gootAlias('#sub-menu-login-fb').hide();
 		
 		//we should get user infos from server here
 	} else {

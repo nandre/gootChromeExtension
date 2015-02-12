@@ -4,6 +4,11 @@ gootAlias(document).ready(function(){
 	gootAlias('#add-goot-btn').click(function(){
 		addCurrentTabToFav();
 	});
+	
+	getUserCommentsFromUrl();
+	
+	getFriendsCommentsFromUrl();
+	
 });
 
 chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
@@ -33,5 +38,65 @@ function historyCallback(data){
 		alert('Url successfully added to favorites');
 	} else {
 		alert('Adding url to favorites failed');
+	}
+}
+
+
+function getUserCommentsFromUrl(){
+	var currentTabUrl= getCurrentTabUrl();
+	var JSESSIONID = localStorage.JSESSIONID;
+	
+	var url = "http://goot.outsidethecircle.eu/plugin/comment/getFromUrl";
+	var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
+	
+	gootAjaxCall(url, data, updateCommentsCallbackForUser);
+}
+
+
+function getFriendsCommentsFromUrl(){
+	var currentTabUrl= getCurrentTabUrl();
+	var JSESSIONID = localStorage.JSESSIONID;
+	
+	var url = "http://goot.outsidethecircle.eu/plugin/comment/getFromUrlAndFriends";
+	var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
+	
+	gootAjaxCall(url, data, updateCommentsCallbackForFriends);
+}
+
+
+
+function updateCommentsCallbackForFriends(data){
+	updateCommentsCallback(data, "friends");
+}
+
+function updateCommentsCallbackForUser(data){
+	updateCommentsCallback(data, "user");
+}
+
+function updateCommentsCallback(data, scope){
+	var result = gootAlias.parseJSON(data);
+	var comments = null;
+	if(result.status == "success"){
+		comments = result.content.comments;
+		var table = gootAlias('<table></table>').addClass('goot-' + scope + '-comments');
+		var l = comments.length;
+		if(l==0){
+			gootAlias("#goot-" + scope + "-no-comments").show();
+		}
+		for(var i = 0; i < l; i++){
+			var comment = comments[i];
+			var row = null;
+			if(comment.type == 0){ //image
+				row = gootAlias('<tr></tr>').text("image comment with id " + comment.id);
+			}else if(comment.type == 1){ //text
+				row = gootAlias('<tr></tr>').text("text comment with id " + comment.id);
+			}else if(comment.type == 2){ //sound
+				row = gootAlias('<tr></tr>').text("sound comment with id " + comment.id);
+			}
+			table.append(row);
+		}
+		gootAlias("#goot-" + scope + "-comments-table").append(table);
+	} else { 
+		console.log("error while getting comment history");
 	}
 }

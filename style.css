@@ -1,11 +1,247 @@
-  body {
-        min-width: 250px;
+  HTML{
+    font-size: 100%;
+    -webkit-border-bottom-left-radius: 20px;  
+ }
+ 
+   body {
+        min-width: 328px;
         overflow-x: hidden;
-		
-        padding: 10px;
-      }
+  }
+ 
+ .container-fluid { 
+     background-color : #00BCFF;
+     color: white;
+ }
+ 
+ #goot-content {
+ 	display : block;
+ 	padding-top : 10px;
+ 	padding-left : 5px;
+ }
+	
+	
+  #goot-footer {
+  	display : block;
+    width: 328px;
+    height: 58px;
+    margin-top : 80px;
+	background-image: url("img/footer.png");
+	background-size: 100% 100%;
+  }
+  
+  .goot-btn-link { 
+  	padding : 1px;
+    border: 1px solid;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .goot-btn-link:visited {
+    background-color : #004358;
+    text-decoration : none !important; 
+    color: white;
+}
+	  
+  .goot-btn-link:hover {
+    background-color : #004358;
+    text-decoration : none;
+    color: white;
+}
 
-      img {
+.goot-btn-link:active {
+    background-color : #004358;
+    text-decoration : none;
+    color: white;
+}
+
+
+
+.goot-log-input { 
+	border: 0;
+	margin-bottom : 3px;
+	background-color : #00BCFF;
+	box-shadow: -8px 8px 0px -7px white, 0px 0px 0px 0px white;
+}
+
+.goot-log-input:focus {
+  outline: none;
+  box-shadow: -8px 8px 0px -7px #FF8400, 0px 0px 0px 0px #FF8400;
+}
+
+.goot-btn {
+	background-color : #FF8400;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 0px solid #000000;
+	height : 30px;
+	padding: 5px 10px 5px 10px;
+	text-decoration: none;
+}
+
+.goot-btn  {
+  text-decoration: none;
+}
+
+.goot-menu-btn {
+  border: none;
+  height: 30px; 
+  cursor: pointer;
+}
+
+#goot-main-menu-btn {
+	width: 30px;
+	background:url(img/menu.png) no-repeat;
+}
+
+#goot-main-menu-btn:hover {
+	background:url(img/menu_hover.png) no-repeat;
+}
+
+#goot-comment-menu-btn {
+	width: 70px;
+	background:url(img/comment.png) no-repeat;
+}
+
+#goot-comment-menu-btn:hover {
+	background:url(img/comment_hover.png) no-repeat;
+}
+
+#goot-share-menu-btn {
+	width: 70px;
+	background:url(img/share.png) no-repeat;
+}
+
+#goot-share-menu-btn:hover {
+	background:url(img/share_hover.png) no-repeat;
+}
+
+#goot-tower-menu-btn {
+	width: 70px;
+	background:url(img/tower.png) no-repeat;
+}
+
+#goot-tower-menu-btn:hover {
+	background:url(img/tower_hover.png) no-repeat;
+}
+
+#goot-tuto-menu-btn {
+	width: 30px;
+	background:url(img/tuto.png) no-repeat;
+}
+
+#goot-tuto-menu-btn:hover {
+	background:url(img/tuto_hover.png) no-repeat;
+}
+
+#connect_btn { 
+	margin-top : 10px;
+}
+ 
+ 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    white;
+}
+
+#goot-navbar-menu { 
+	margin-top:5px;	
+}
+
+#goot-menu-options { 
+	float : left;
+	margin-left : 15px;
+	width : 255px;
+}
+
+.goot-menu-contextual{
+	float : left;
+	margin-left : 3px;
+	width : 265px;
+}
+
+#goot-fix-menu-btn {
+	float : right;
+	width : 30px;
+	margin-right : 27px;
+}
+
+ .goot-content-title { 
+ 	margin-left: 10px;
+ 	font-size: 18px;
+ 	font-weight: bold;
+ }
+ 
+ .goot-content-text { 
+ 	margin-left: 10px;
+ }
+ 
+.long-btn {
+	font-size: 20px;
+	font-weight: bold;
+	line-height : 42px;
+}
+
+.text-btn {
+	position: relative; 
+	bottom: 6.75px;
+}
+
+.goot-standard-btn { 
+	background-color : #FF8400;
+	border-radius: 4px;
+	margin-top : 2px;
+	margin-left: 30px;
+}
+
+.goot-standard-btn:hover { 
+	background-color : #FF8400;
+}
+
+#goot-user-no-comments {}
+
+ #goot-comment-menu-long-btn {
+ 	width: 230px;
+	background:url(img/comment-long.png) no-repeat;
+  }
+  
+   #goot-comment-menu-long-btn:hover {
+	background:url(img/comment-long-hover.png) no-repeat;
+  }
+  
+  #goot-share-menu-long-btn {
+ 	width: 230px;
+	background:url(img/share-long.png) no-repeat;
+  }
+  
+  #goot-share-menu-long-btn:hover {
+ 	width: 230px;
+	background:url(img/share-long-hover.png) no-repeat;
+  }
+  
+  #goot-tower-menu-long-btn {
+ 	width: 230px;
+	background:url(img/tower-long.png) no-repeat;
+  }
+  
+  #goot-tower-menu-long-btn:hover {
+ 	width: 230px;
+	background:url(img/tower-long-hover.png) no-repeat;
+  }
+  
+  
+
+  img {
         margin: 5px;
         border: 2px solid white;
         vertical-align: middle;

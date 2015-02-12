@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GooT</title>
+	
+	<script src="bootstrap/js/jquery.js"></script>
+	<script src="goot_commons.js"></script>
+    <script src="popup.js"></script>
+    <script src="history/history.js"></script>
+	<script src="fb.js"></script>
+ 	
+ 	
+	<link href='http://fonts.googleapis.com/css?family=Advent+Pro' rel='stylesheet' type='text/css'>		
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+  	<link href="style.css" rel="stylesheet" type="text/css">
+  	
+  </head>
+  <body>
+	  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="http://goot.outsidethecircle.eu/#">GooT</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://goot.outsidethecircle.eu/about">About</a></li>
+              <li><a href="http://goot.outsidethecircle.eu/contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="http://goot.outsidethecircle.eu" class="dropdown-toggle" data-toggle="dropdown">Parameters<b class="caret"></b></a>
+                <ul id="dropdown-menu-a" class="dropdown-menu">
+				  <!--
+					Some submenus might be prepend here by javascript calls (ex : button to show preview)
+				  -->
+                  <li class="nav-header">Your account</li>
+                  <li><a href="http://goot.outsidethecircle.eu">Manage my account</a></li>
+                  <li><a href="#" id="disconnect_btn">Disconnect</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="navbar-form pull-right" id="sub-menu-login-goot">
+				<!-- Done in ajax -->
+				<input class="span2" 	type="text" 	name="username"	placeholder="Email">
+				<input class="span2" 	type="password" name="password"	placeholder="Password">
+				<a class="btn btn-small" style="with : 100px" id="connect_btn" href="#">GooT me in</a>
+			
+			</div>
+			
+			  <!-- 
+				It's important to add the ".gsp" in the redirect_url parameter because facebook redirects with an anchor (#) parameter 
+				which cannot be treated on server side. 
+				So we redirect to the view (.gps) to change the "#" parameter to a "?" to make the request able to be managed on server side. 
+				When the JS treatment is done on the url, the page is reloaded by JS (window.location changed) and processed on the server.
+			  -->
+			  
+			<div class="navbar-form pull-right" id="sub-menu-login-fb">
+				<a class="btn btn-small" style="with : 100px" id="fb_btn" target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=430736073677176&response_type=token&scope=email&redirect_uri=http://goot.outsidethecircle.eu/facebookUser/syncFacebookUser.gsp">Connect with Facebook</a>
+            </div>
+			
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+	 <div class="row">
+		<div id="user-info"></div>
+	 </div>
+
+	 <!-- Main frame -->
+      <div class="hero-unit">
+        <h4>QR-Code ready to share!</h4>
+		<img id="QRCodeImage" alt="Scan me if you dare !" src=""/>
+        <p id="contentType"></p>
+        <p id="share-fb-btn"><a href="#" class="btn btn-primary btn-small">Share on FB</a></p>
+		<p id="add-goot-btn"><a href="#" class="btn btn-danger btn-small">Add to my GooT</a></p>
+		<p id="record-comment-btn"><a href="#" class="btn btn-primary btn-small">Record comment</a></p>
+      </div>
+
+      <hr>
+
+	 
+        <div class="ytpreview" style="display : none; margin-bottom: 10px;">
+          <h2>Youtube Preview</h2>
+          <div id="preview"></div>
+        </div>
+		
+		<div class="ytpreview" style="display: none">
+			<div style="max-width: 250px; margin: 0 auto 0px;">
+				<button type="button" class="btn btn-small">View details</button>
+		     	<button style="margin-left  : 4px" type="button" class="btn btn-small btn-danger"id="closePreview">Close preview</button>
+			</div>
+		</div>
+
+
+		<footer>
+        <p>Goot</p>
+      </footer>
+
+    </div>
+ 
+	
+
+	
+	    <!-- javascript
+    ================================================== -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+	 <!-- Facebook features initialization -->
+	<div id="fb-root"></div>
+			
+  </body>
+</html>
+

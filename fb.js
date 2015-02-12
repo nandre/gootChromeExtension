@@ -3,9 +3,10 @@ var gootAlias = jQuery.noConflict();
 function displayUser(user) {
 	if(user && (user.first_name != null)){
 		gootAlias('#fb_btn').hide();
-		gootAlias('#sub-menu-login-goot').hide();
+		gootAlias('#sub-menu-login-all').hide();
 		gootAlias('#disconnect_btn').show();
-		gootAlias('#sub-menu-login-fb').append('<p style="color : white;">Hi ' + user.first_name + '!</p>');
+		gootAlias('#goot-hi').append('<p style="color : white;">Hi ' + user.first_name + '!</p>');
+		gootAlias('#goot-connect-zone-btn').hide();
 	} else {
 		// session lost on fb
 		localStorage.removeItem('accessToken');
