@@ -172,12 +172,12 @@ function getMyFriendsCallback(data){
 	console.log("friends : " + JSON.stringify(data));
 	
 	scope = "user";
-	var links = null;
+	var friends = null;
 	if(result.status == "success"){
 		
 		console.log("getMyFriendsCallback result success");
 		
-		links = result.content.friends;
+		friends = result.content.friends;
 		var table = gootAlias('<table></table>').addClass('goot-' + scope + '-friends'); 
 		var l = 0;
 		try { 
@@ -192,11 +192,11 @@ function getMyFriendsCallback(data){
 		for(var i = 0; i < l; i++){
 			var friend = friends[i];
 			var row = null;
-			console.log("link : " + JSON.stringify(link));
+			console.log("friend " + JSON.stringify(friend));
 
-			row = gootAlias('<tr class="goot-friend-row"></tr>').append("<button class='goot-standard-button' id='goot-friend-btn-" + friend.id + "'>" + friend.email +"<button>");
+			row = gootAlias('<tr class="goot-friend-row"></tr>').append("<button class='goot-standard-btn text-align' id='goot-friend-btn-" + friend.id + "'>" + friend.email +"</button>");
 			//save link url in the view to avoid having to ajax call the server
-			row.append("<input type='hidden' id='goot-friend-email-" + friend.id + "' name='goot-friend-email-" + friend.id + "' value=" + friend.email + "'></input>");
+			row.append("<input type='hidden' id='goot-friend-email-" + friend.id + "' name='goot-friend-email-" + friend.id + "' value='" + friend.email + "'></input>");
 			table.append(row);			
 		}
 		gootAlias("#goot-" + scope + "-friends-table").append(table);
@@ -226,6 +226,8 @@ function sendLinkToAFriend(friendTagId){
 	var url = "http://goot.outsidethecircle.eu/plugin/link/send";
 	var JSESSIONID = localStorage.JSESSIONID;
 	
+	console.log("friendEmail : " + friendEmail);
+	
 	var data = {tabUrl : tabUrl, receiverMail : friendEmail, JSESSIONID : JSESSIONID };
 	
 	gootAjaxCall(url, data, sendLinkToAFriendCallback);
@@ -233,6 +235,7 @@ function sendLinkToAFriend(friendTagId){
 
 
 function sendLinkToAFriendCallback(data){
+	console.log("sendLinkToAFriendCallback data : " + data.responseText);
 	if(data.responseText == "success"){
 		alert('Link successfully sent to your friend');
 	} else {
