@@ -2,7 +2,7 @@ var size='200x200';
 var qrCodeGeneratorUrl = 'http://api.qrserver.com/v1/create-qr-code/?size=' + size + '&data=';
 var currentPageUrl;
 
-var menus = ["main", "comment", "share", "tower", "tuto"];
+var menus = ["main", "comment", "share", "tower", "tuto", "friends"];
 
 
 var QRCodeGenerator = {
@@ -35,7 +35,7 @@ var QRCodeGenerator = {
 			id = url.match(/https?:\/\/(?:www.)?(\w*).(com|fr)\/.*v=(\w*)/)[3];
 			if(id.length > 0){
 				gootAlias('#dropdown-menu-a').prepend('<li><a href="#" id="showYoutubePreviewButton">Show preview</a></li><li class="divider"></li>');
-				document.getElementById('contentType').innerHTML = '<a href="#" id="showYoutubePreviewLink">Check phone rendering</a>';
+				document.getElementById('contentType').innerHTML = '<a href="#" id="showYoutubePreviewLink">Youtube video detected</a>';
 				gootAlias('#showYoutubePreviewButton').click(function(){
 					showPreview("youtube",id);
 				});
@@ -94,6 +94,7 @@ var QRCodeGenerator = {
    */
   showQRCode: function(tabUrl) {
 	document.getElementById('QRCodeImage').src = this.constructQRCodeURL_(tabUrl);
+	gootAlias("#QRCodeImage").show();
 	this.parseURL_(tabUrl);
   },
 
@@ -243,21 +244,42 @@ gootAlias(document).ready(function(){
 		toggleMainMenu();
 	});	
 	
+	gootAlias("#goot-link-send-friend").click(function(){
+		goToFriendsPageFromSharePage();
+	});
 	
 	
 });
 
 function hideAllButSelectedMenu(selectedMenu){
 		
+	var l = menus.length;
+	
 	if(gootAlias("#goot-" + selectedMenu +"-menu").is(":hidden")){
 		//make sure connection menu is hidden
 		gootAlias("#sub-menu-login-all").fadeOut();
 		//hide connection/disconnection bar if not hidden
 		gootAlias("#goot-topbar-connection").slideUp();
-		//hide the multi-options bar 
-		gootAlias("#goot-menu-options").hide("slide", { direction: "right" }, 500, function(){
-			gootAlias("#goot-menu-contextual-" + selectedMenu).show("slide", { direction: "right" }, 500);
-		});
+		
+		var hiddingMenuCounter = 0;
+		 
+		for(var i = 0; i < l; i++) {
+		    var menu = menus[i];
+		   
+		    try {
+		    	gootAlias("#goot-" + menu + "-menu").fadeOut(100,function(){ 
+			    	gootAlias("#goot-menu-contextual-" + menu).hide("slide", { direction: "right" }, 500, function(){
+			    		hiddingMenuCounter = hiddingMenuCounter + 1;
+						if(hiddingMenuCounter >= l-3){
+							gootAlias("#goot-menu-options").hide("slide", { direction: "right" }, 500, function(){
+								gootAlias("#goot-menu-contextual-" + selectedMenu).show("slide", { direction: "right" }, 500);
+							});
+						}
+			    });
+			   });
+		    }catch(e){}
+		}
+		
 		//show the proprer context bar
 		//display content for selectedMenu
 		gootAlias("#goot-" + selectedMenu + "-menu").slideDown();
@@ -284,6 +306,13 @@ function toggleCommentMenu(){
 	hideAllButSelectedMenu("comment");
 }
 
+function goToFriendsPageFromSharePage(){
+	gootAlias("#goot-share-menu").fadeOut(100, function(){
+		gootAlias("#goot-friends-menu").fadeIn();
+	});
+	
+}
+
 function toggleMainMenu(){ 
 	var l = menus.length;
 	
@@ -300,7 +329,7 @@ function toggleMainMenu(){
 		    	gootAlias("#goot-" + menu + "-menu").fadeOut();
 		    	gootAlias("#goot-menu-contextual-" + menu).hide("slide", { direction: "right" }, 500, function(){
 		    		hiddingMenuCounter = hiddingMenuCounter + 1;
-					if(hiddingMenuCounter >= l-2){
+					if(hiddingMenuCounter >= l-3){
 						gootAlias("#goot-menu-options").show("slide", { direction: "right" }, 500);
 					}
 		    	});

@@ -210,6 +210,9 @@
 
 #goot-user-no-comments {}
 
+#goot-user-no-friends { margin-left : 15px;}
+
+
  #goot-comment-menu-long-btn {
  	width: 230px;
 	background:url(img/comment-long.png) no-repeat;
@@ -239,7 +242,39 @@
 	background:url(img/tower-long-hover.png) no-repeat;
   }
   
+  .text-align { 
+  	text-align : center;
+  }
   
+  #goot-current-shared-link {
+  	margin-left : 20px;
+  }
+  
+  #goot-link-send-friend {
+  	margin-left : -7px;
+  }
+  
+  .goot-standard-text-input { 
+  	border-radius: 4px;
+  	color : #FF8400;
+  	margin : 5px;
+  }
+  
+  #goot-friend-add { 
+  	margin-left : -7px;
+  }
+li {
+	list-style-type: disc;
+	color : #FF8400;
+}
+  
+button {
+	color : white;
+}
+
+a {
+	color : white;
+}
 
   img {
         margin: 5px;
@@ -250,5 +285,5 @@
       }
 	  
 	  #contentType {
-		font-size: 10px;
+		font-size: 8px;
 	  }

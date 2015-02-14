@@ -95,23 +95,57 @@
 				<div class="row">
 					<button class="goot-standard-btn" id="record-comment-btn">Add a comment</button>
 				</div>
+				<div class="row goot-content-text" id="goot-user-comments-txt" >
+					Your comments
+				</div>
 				<div class="row goot-content-text" id="goot-user-no-comments" style="display: none;">You haven't commented this page yet.</div>
+				<div class="row goot-content-text" id="goot-user-comments-table"></div>
 				<div class="row goot-content-title">
 					Comments
 				</div>
-				<div class="row" id="goot-user-comments-table">
-				</div>
-				<div class="row goot-content-text">
+				<div class="row goot-content-text" id="goot-friends-comments-txt" >
 					Your friends comments
 				</div>
-				<div class="row goot-content-text" id="goot-friends-no-comments" style="display: none;">You haven't commented this page yet.</div>
+				<div class="row goot-content-text" id="goot-friends-no-comments" style="display: none;">Your friends haven't commented this page yet.</div>
 				<div class="row" id="goot-friends-comments-table">
 				</div>
 			</div>
 			
 			<div id="goot-share-menu" style="display : none;">
-				<div class="row goot-content-title" >
-					Share this page
+				<div id="goot-qrcode-page">
+					<div class="row goot-content-title" >
+						Share this page
+					</div>
+					<div class="row text-align" id="contentType"></div>
+					<div class="row" id="goot-current-shared-link">
+					</div>
+					<div class="row text-align">
+						<button class="goot-standard-btn" id="goot-link-send-friend">Gliiim friend</button>
+					</div>
+					<div class="row text-align">
+						<img id="QRCodeImage" alt="Scan me if you Gliiim !" src=""/>
+					</div>
+				</div>
+				<div id="goot-link-send-friend-page">
+					<div class="row" id="goot-friends-list">
+					</div>
+				</div>
+			</div>
+			
+			<div id="goot-friends-menu" style="display : none;">
+				<div class="row goot-content-title">
+					Send to a friend
+				</div>
+				<div class="row" id="goot-user-no-friends" style="display : none">You don't have any Gliim friends yet</div>
+				<div class="row" id="goot-user-friends"></div>
+				<div class="row goot-content-title">
+					Add a friend
+				</div>
+				<div class="row text-align">
+					<input type="text" class="goot-standard-text-input" name="goot-friend-email" id="goot-friend-email"></input>
+				</div>
+				<div class="row text-align">
+					<button class="goot-standard-btn" id="goot-friend-add">Add a Gliim friend</button>
 				</div>
 			</div>
 			
@@ -122,11 +156,20 @@
 				<div class="row">
 					<button class="goot-standard-btn" id="add-goot-btn">Add to my playlist</button>
 				</div>
+				<div class="row goot-content-text" id="goot-user-links-txt" >
+					Your Links
+				</div>
+				<div class="row goot-content-text" id="goot-user-no-links" style="display: none;">You haven't added any favorite yet.</div>
+				<div class="row goot-content-text" id="goot-user-links-table"></div>
 			</div>
 			
 			<div id="goot-tuto-menu" style="display : none;">
 				<div class="row goot-content-title" >
-					How to
+					How to use Gliiim
+				</div>
+				<div class="row" style="margin-left : 15px; margin-right : 15px;">
+					Navigate through the different menus to comment the page and see your friends comments, 
+					share this page and your comments with your friends, or just consult your favorite links and comments.
 				</div>
 			</div>
 			

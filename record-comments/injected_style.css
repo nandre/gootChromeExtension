@@ -1,6 +1,7 @@
 #goot_nav { 
 	padding: 25px 0;
-	background-color: slategrey;
+	background-color : #00BCFF;
+    color: white;
 	height : 100px;
 	z-index: 100000;
 	overflow: visible;
@@ -9,6 +10,25 @@
 #init-camera-btn { 
 	text-align : center;	
 }
+
+.goot-standard-btn { 
+	background-color : #FF8400;
+	border-radius: 4px;
+	margin-top : 2px;
+	margin-left: 30px;
+	color: white;
+}
+
+.goot-standard-btn:hover { 
+	background-color : #FF8400;
+}
+
+  .goot-standard-text-input { 
+  	border-radius: 4px;
+  	color : #FF8400;
+  	margin : 5px;
+  }
+
 
 
 .sticky {
@@ -38,8 +58,8 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
 
  #record-video-comment { 
  	position : relative;
- 	width : 300px;
- 	float : right;
+ 	width : 400px;
+ 	float : left;
  }
  
   #goot-snapshot { 
@@ -50,14 +70,14 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
  
  #record-text-comment { 
  	position : relative;
- 	width : 200px;
+ 	width : 500px;
  	clear : both;
  	float : left;
  }
 
 #goot-left-block {
   display : block;
-  width : 300px;
+  width : 500px;
   float: left;
 }
 
