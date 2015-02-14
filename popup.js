@@ -366,20 +366,40 @@ function ajaxConnect(){
 }
 
 
-function connectionCallback(data){ 
-	if(data.responseText != "error"){
+function connectionCallback(data){
+	
+	var result = gootAlias.parseJSON(JSON.stringify(data));
+	
+	if(result.status == "success"){
+		
+		alert('Connection done ! ');
 		//add JSESSIONID in localStorage
-		localStorage.JSESSIONID = data.responseText;
+		localStorage.JSESSIONID = result.content.sessionId;
 		//add JSESSIONID in the cookie
 		document.cookie="JSESSIONID=" + localStorage.JSESSIONID;
 		
-		gootAlias('#fb_btn').hide();
-		gootAlias('#sub-menu-login-all').hide();
+		var firstName = result.content.firstName;
+		displayGliiimUser(firstName);
 		
 		//we should get user infos from server here
 	} else {
+		alert("Connection failed.");
 		//connection failed
 	}
+}
+
+function displayGliiimUser(firstName) {
+	if(firstName != null){
+		gootAlias('#fb_btn').hide();
+		gootAlias('#sub-menu-login-all').hide();
+		gootAlias('#disconnect_btn').show();
+		gootAlias('#goot-hi').append('<p style="color : white;">Hi ' + firstName + '!</p>');
+		gootAlias('#goot-connect-zone-btn').hide();
+	} else {
+		// session lost on Gliiim
+		localStorage.removeItem('JSESSIONID');
+	}
+
 }
 
 

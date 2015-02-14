@@ -178,7 +178,7 @@ function getMyFriendsCallback(data){
 		console.log("getMyFriendsCallback result success");
 		
 		friends = result.content.friends;
-		var table = gootAlias('<table></table>').addClass('goot-' + scope + '-friends'); 
+		var table = gootAlias('<div></div>').addClass('goot-' + scope + '-friends'); 
 		var l = 0;
 		try { 
 			var l = friends.length;
@@ -194,7 +194,7 @@ function getMyFriendsCallback(data){
 			var row = null;
 			console.log("friend " + JSON.stringify(friend));
 
-			row = gootAlias('<tr class="goot-friend-row"></tr>').append("<button class='goot-standard-btn text-align' id='goot-friend-btn-" + friend.id + "'>" + friend.email +"</button>");
+			row = gootAlias('<div class="row goot-friend-row text-align"></div>').append("<button class='goot-standard-btn fix-center' id='goot-friend-btn-" + friend.id + "'>" + friend.email +"</button>");
 			//save link url in the view to avoid having to ajax call the server
 			row.append("<input type='hidden' id='goot-friend-email-" + friend.id + "' name='goot-friend-email-" + friend.id + "' value='" + friend.email + "'></input>");
 			table.append(row);			
