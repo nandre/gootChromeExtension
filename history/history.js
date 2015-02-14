@@ -1,12 +1,12 @@
 var currentTabUrl = null;
 var currentSharedLinkId = null;
 
-gootAlias(document).ready(function(){
-	gootAlias('#add-goot-btn').click(function(){
+gliiimAlias(document).ready(function(){
+	gliiimAlias('#add-gliiim-btn').click(function(){
 		addCurrentTabToFav();
 	});
 	
-	gootAlias('#goot-friend-add').click(function(){
+	gliiimAlias('#gliiim-friend-add').click(function(){
 		addFriend();
 	});
 	
@@ -45,10 +45,10 @@ function addCurrentTabToFav(){
 	var JSESSIONID = localStorage.JSESSIONID;
 
 	console.log("current tab url : " + currentTabUrl);
-	var url = "http://goot.outsidethecircle.eu/plugin/link/add";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/link/add";
 	var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
 	
-	gootAjaxCall(url, data, historyCallback);
+	gliiimAjaxCall(url, data, historyCallback);
 }
 
 function historyCallback(data){
@@ -60,18 +60,18 @@ function historyCallback(data){
 }
 
 function getMyLinks(){
-	var url = "http://goot.outsidethecircle.eu/plugin/link/getMyFavorites";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/link/getMyFavorites";
 	var JSESSIONID = localStorage.JSESSIONID;
 	
 	var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
 	
-	gootAjaxCall(url, data, getMyLinksCallback);
+	gliiimAjaxCall(url, data, getMyLinksCallback);
 	
 }
 
 function getMyLinksCallback(data){
 
-	var result = gootAlias.parseJSON(JSON.stringify(data));
+	var result = gliiimAlias.parseJSON(JSON.stringify(data));
 	
 	console.log("links : " + JSON.stringify(data));
 	
@@ -82,15 +82,15 @@ function getMyLinksCallback(data){
 		console.log("getMyLinksCallback result success");
 		
 		links = result.content.links;
-		var table = gootAlias('<ul></ul>').addClass('goot-' + scope + '-links'); 
+		var table = gliiimAlias('<ul></ul>').addClass('gliiim-' + scope + '-links'); 
 		var l = 0;
 		try { 
 			var l = links.length;
 		}catch(e){}
 		if(l==0){
 			console.log("no links found");
-			gootAlias("#goot-" + scope + "-no-links").show();
-			gootAlias("#goot-" + scope + "-links-txt").hide();
+			gliiimAlias("#gliiim-" + scope + "-no-links").show();
+			gliiimAlias("#gliiim-" + scope + "-links-txt").hide();
 		}
 		console.log("links found : " + l);
 		for(var i = 0; i < l; i++){
@@ -98,29 +98,29 @@ function getMyLinksCallback(data){
 			var row = null;
 			console.log("link : " + JSON.stringify(link));
 
-			row = gootAlias('<li class="goot-link-row"></li>').append("<a href='#' id='goot-link-parent-" + link.id + "'>" + link.url.substring(0, Math.min(30, link.url.length)) +"...<a>");
-			row.append("<div class='goot-link-subtree' style='display:none;' id='goot-link-subtree-" + link.id + "'>" +
-						"<a class='goot-btn-link' target='_blank' href='" + link.url + "'>Open" +
+			row = gliiimAlias('<li class="gliiim-link-row"></li>').append("<a href='#' id='gliiim-link-parent-" + link.id + "'>" + link.url.substring(0, Math.min(30, link.url.length)) +"...<a>");
+			row.append("<div class='gliiim-link-subtree' style='display:none;' id='gliiim-link-subtree-" + link.id + "'>" +
+						"<a class='gliiim-btn-link' target='_blank' href='" + link.url + "'>Open" +
 						"</a>" +  
-						"<button class='goot-standard-btn' id='goot-share-btn-" + link.id + "'>" + 
+						"<button class='gliiim-standard-btn' id='gliiim-share-btn-" + link.id + "'>" + 
 							"Share" + 
 							"</button>" + 
 						"</div>");
 			//save link url in the view to avoid having to ajax call the server
-			row.append("<input type='hidden' id='goot-link-url-" + link.id + "' name='goot-link-url-" + link.id + "' value=" + link.url + "'></input>");
+			row.append("<input type='hidden' id='gliiim-link-url-" + link.id + "' name='gliiim-link-url-" + link.id + "' value=" + link.url + "'></input>");
 			table.append(row);			
 		}
-		gootAlias("#goot-" + scope + "-links-table").append(table);
+		gliiimAlias("#gliiim-" + scope + "-links-table").append(table);
 		
 		for(var j=0; j < l;j++){
 			var link = links[j];
 			console.log('link.id : ' + link.id);
 			
-			gootAlias("#goot-link-parent-" + link.id).click(function(){
+			gliiimAlias("#gliiim-link-parent-" + link.id).click(function(){
 				expandLink(this.id);
 			});
 			
-			gootAlias("#goot-share-btn-" + link.id).click(function(){
+			gliiimAlias("#gliiim-share-btn-" + link.id).click(function(){
 				shareThisLink(this.id);
 			});
 		}
@@ -130,9 +130,9 @@ function getMyLinksCallback(data){
 }
 
 function addFriend(){
-	var url = "http://goot.outsidethecircle.eu/plugin/friend/add";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/friend/add";
 	var JSESSIONID = localStorage.JSESSIONID;
-	var email = gootAlias("#goot-friend-email").val();
+	var email = gliiimAlias("#gliiim-friend-email").val();
 	
 	console.log("addFriend email : " + email)
 	
@@ -143,7 +143,7 @@ function addFriend(){
 	
 	var data = { JSESSIONID : JSESSIONID, email : email};
 	
-	gootAjaxCall(url, data, addFriendCallback);
+	gliiimAjaxCall(url, data, addFriendCallback);
 }
 
 function addFriendCallback(data){
@@ -156,18 +156,18 @@ function addFriendCallback(data){
 
 
 function getMyFriends(){
-	var url = "http://goot.outsidethecircle.eu/plugin/friend/getAll";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/friend/getAll";
 	var JSESSIONID = localStorage.JSESSIONID;
 	
 	var data = { JSESSIONID : JSESSIONID };
 	
-	gootAjaxCall(url, data, getMyFriendsCallback);
+	gliiimAjaxCall(url, data, getMyFriendsCallback);
 	
 }
 
 function getMyFriendsCallback(data){
 
-	var result = gootAlias.parseJSON(JSON.stringify(data));
+	var result = gliiimAlias.parseJSON(JSON.stringify(data));
 	
 	console.log("friends : " + JSON.stringify(data));
 	
@@ -178,15 +178,15 @@ function getMyFriendsCallback(data){
 		console.log("getMyFriendsCallback result success");
 		
 		friends = result.content.friends;
-		var table = gootAlias('<div></div>').addClass('goot-' + scope + '-friends'); 
+		var table = gliiimAlias('<div></div>').addClass('gliiim-' + scope + '-friends'); 
 		var l = 0;
 		try { 
 			var l = friends.length;
 		}catch(e){}
 		if(l==0){
 			console.log("no friends found");
-			gootAlias("#goot-" + scope + "-no-friends").show();
-			gootAlias("#goot-" + scope + "-friends-txt").hide();
+			gliiimAlias("#gliiim-" + scope + "-no-friends").show();
+			gliiimAlias("#gliiim-" + scope + "-friends-txt").hide();
 		}
 		console.log("friends found : " + l);
 		for(var i = 0; i < l; i++){
@@ -194,18 +194,18 @@ function getMyFriendsCallback(data){
 			var row = null;
 			console.log("friend " + JSON.stringify(friend));
 
-			row = gootAlias('<div class="row goot-friend-row text-align"></div>').append("<button class='goot-standard-btn fix-center' id='goot-friend-btn-" + friend.id + "'>" + friend.email +"</button>");
+			row = gliiimAlias('<div class="row gliiim-friend-row text-align"></div>').append("<button class='gliiim-standard-btn fix-center' id='gliiim-friend-btn-" + friend.id + "'>" + friend.email +"</button>");
 			//save link url in the view to avoid having to ajax call the server
-			row.append("<input type='hidden' id='goot-friend-email-" + friend.id + "' name='goot-friend-email-" + friend.id + "' value='" + friend.email + "'></input>");
+			row.append("<input type='hidden' id='gliiim-friend-email-" + friend.id + "' name='gliiim-friend-email-" + friend.id + "' value='" + friend.email + "'></input>");
 			table.append(row);			
 		}
-		gootAlias("#goot-" + scope + "-friends-table").append(table);
+		gliiimAlias("#gliiim-" + scope + "-friends-table").append(table);
 		
 		for(var j=0; j < l;j++){
 			var friend = friends[j];
 			console.log('friend.id : ' + friend.id);
 			
-			gootAlias("#goot-friend-btn-" + friend.id).click(function(){
+			gliiimAlias("#gliiim-friend-btn-" + friend.id).click(function(){
 				sendLinkToAFriend(this.id);
 			});
 			
@@ -218,19 +218,19 @@ function getMyFriendsCallback(data){
 
 function sendLinkToAFriend(friendTagId){
 	
-	var friendId = friendTagId.replace('goot-friend-btn-','');
-	var friendEmail = gootAlias("#goot-friend-email-" + friendId).val();
+	var friendId = friendTagId.replace('gliiim-friend-btn-','');
+	var friendEmail = gliiimAlias("#gliiim-friend-email-" + friendId).val();
 	var linkId = currentSharedLinkId;
-	var tabUrl = gootAlias("#goot-link-url-" + linkId).val();
+	var tabUrl = gliiimAlias("#gliiim-link-url-" + linkId).val();
 
-	var url = "http://goot.outsidethecircle.eu/plugin/link/send";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/link/send";
 	var JSESSIONID = localStorage.JSESSIONID;
 	
 	console.log("friendEmail : " + friendEmail);
 	
 	var data = {tabUrl : tabUrl, receiverMail : friendEmail, JSESSIONID : JSESSIONID };
 	
-	gootAjaxCall(url, data, sendLinkToAFriendCallback);
+	gliiimAjaxCall(url, data, sendLinkToAFriendCallback);
 }
 
 
@@ -248,24 +248,24 @@ function sendLinkToAFriendCallback(data){
 function expandLink(linkTagId){
 	console.log("expandLink : " + linkTagId);
 	
-	var linkId = linkTagId.replace('goot-link-parent-','');
+	var linkId = linkTagId.replace('gliiim-link-parent-','');
 	
 	//hide all other expanded links
-	gootAlias(".goot-link-subtree").slideUp();
+	gliiimAlias(".gliiim-link-subtree").slideUp();
 	
 	// expand the link
-	if(gootAlias("#goot-link-subtree-" +linkId).is(":hidden")){
-		gootAlias("#goot-link-subtree-" +linkId).slideDown();
+	if(gliiimAlias("#gliiim-link-subtree-" +linkId).is(":hidden")){
+		gliiimAlias("#gliiim-link-subtree-" +linkId).slideDown();
 	} else { 
 		//hide if link was already shown
-		gootAlias("#goot-link-subtree-" +linkId).slideUp();
+		gliiimAlias("#gliiim-link-subtree-" +linkId).slideUp();
 	}
 	
 }
 
 function shareThisLink(linkTagId){
-	var linkId = linkTagId.replace('goot-share-btn-','');
-	var linkUrl = gootAlias("#goot-link-url-" + linkId).val();
+	var linkId = linkTagId.replace('gliiim-share-btn-','');
+	var linkUrl = gliiimAlias("#gliiim-link-url-" + linkId).val();
 	
 	goToShareMenu(linkId, linkUrl);
 	
@@ -275,7 +275,7 @@ function goToShareMenu(linkId, linkUrl){
 	console.log("linkUrl : " +linkUrl);
 	//display QRCode for this link
 	synchronousShowQRCode(linkUrl);
-	gootAlias("#goot-current-shared-link").html("<p>" + linkUrl.substring(0, Math.min(30, linkUrl.length)) +  "...</p>");
+	gliiimAlias("#gliiim-current-shared-link").html("<p>" + linkUrl.substring(0, Math.min(30, linkUrl.length)) +  "...</p>");
 	currentSharedLinkId = linkId;
 	toggleShareMenu();
 }
@@ -286,10 +286,10 @@ function getUserCommentsFromUrl(tabUrl){
 		var currentTabUrl= tabUrl;
 		var JSESSIONID = localStorage.JSESSIONID;
 		
-		var url = "http://goot.outsidethecircle.eu/plugin/comment/getFromUrl";
+		var url = "http://gliiim.outsidethecircle.eu/plugin/comment/getFromUrl";
 		var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
 		
-		gootAjaxCall(url, data, updateCommentsCallbackForUser);
+		gliiimAjaxCall(url, data, updateCommentsCallbackForUser);
 	} else {
 		console.log('error, current tab url is null');
 	}
@@ -301,10 +301,10 @@ function getFriendsCommentsFromUrl(tabUrl){
 		var currentTabUrl= tabUrl;
 		var JSESSIONID = localStorage.JSESSIONID;
 		
-		var url = "http://goot.outsidethecircle.eu/plugin/comment/getFromUrlAndFriends";
+		var url = "http://gliiim.outsidethecircle.eu/plugin/comment/getFromUrlAndFriends";
 		var data = { JSESSIONID : JSESSIONID, tabUrl : currentTabUrl};
 		
-		gootAjaxCall(url, data, updateCommentsCallbackForFriends);
+		gliiimAjaxCall(url, data, updateCommentsCallbackForFriends);
 	} else {
 		console.log('error, current tab url is null');
 	}
@@ -323,7 +323,7 @@ function updateCommentsCallbackForUser(data){
 function updateCommentsCallback(data, scope){
     console.log("callback data for comments :", JSON.stringify(data));
 
-	var result = gootAlias.parseJSON(JSON.stringify(data));
+	var result = gliiimAlias.parseJSON(JSON.stringify(data));
 		
 	var comments = null;
 	if(result.status == "success"){
@@ -331,15 +331,15 @@ function updateCommentsCallback(data, scope){
 		console.log("updateCommentsCallback result success");
 		
 		comments = result.content.comments[0];
-		var table = gootAlias('<table></table>').addClass('goot-' + scope + '-comments'); 
+		var table = gliiimAlias('<table></table>').addClass('gliiim-' + scope + '-comments'); 
 		var l = 0;
 		try { 
 			var l = comments.length;
 		}catch(e){}
 		if(l==0){
 			console.log("no comments found");
-			gootAlias("#goot-" + scope + "-no-comments").show();
-			gootAlias("#goot-" + scope + "-comments-txt").hide();
+			gliiimAlias("#gliiim-" + scope + "-no-comments").show();
+			gliiimAlias("#gliiim-" + scope + "-comments-txt").hide();
 		}
 		console.log("comments found : " + l);
 		for(var i = 0; i < l; i++){
@@ -348,15 +348,15 @@ function updateCommentsCallback(data, scope){
 			console.log("comment : " + JSON.stringify(comment));
 			console.log("comment.type : " + comment.type);
 			if(comment.type == '0'){ //image
-				row = gootAlias('<tr></tr>').text("image comment with id " + comment.id);
+				row = gliiimAlias('<tr></tr>').text("image comment with id " + comment.id);
 			}else if(comment.type == '1'){ //text
-				row = gootAlias('<tr></tr>').text("text comment with id " + comment.id);
+				row = gliiimAlias('<tr></tr>').text("text comment with id " + comment.id);
 			}else if(comment.type == '2'){ //sound
-				row = gootAlias('<tr></tr>').text("sound comment with id " + comment.id);
+				row = gliiimAlias('<tr></tr>').text("sound comment with id " + comment.id);
 			}
 			table.append(row);
 		}
-		gootAlias("#goot-" + scope + "-comments-table").append(table);
+		gliiimAlias("#gliiim-" + scope + "-comments-table").append(table);
 	} else { 
 		console.log("error while getting comment history");
 	}

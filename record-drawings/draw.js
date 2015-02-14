@@ -4,13 +4,13 @@
 function Drawings(ajaxroot) {
   // Here is our drawings object.
 
-  this.canvas = gootAlias("<canvas>").css({
+  this.canvas = gliiimAlias("<canvas>").css({
     position: "fixed",
     "z-index": "100000",
     top: "100",
     left: "0",
     "pointer-events": "auto"
-  }).appendTo(gootAlias("#goot_color_picker"))[0];
+  }).appendTo(gliiimAlias("#gliiim_color_picker"))[0];
   //}).appendTo(document.body)[0];
 
     	
@@ -80,8 +80,8 @@ Drawings.prototype.stop = function() {
     this.historyStream.stop();
   }
   clearTimeout(this.resizeTimer);
-  gootAlias(this.canvas).fadeOut('fast', bind(this, function() {
-      gootAlias(this.canvas).remove();
+  gliiimAlias(this.canvas).fadeOut('fast', bind(this, function() {
+      gliiimAlias(this.canvas).remove();
     }));
 };
 Drawings.prototype.transform = function(p) {
@@ -120,19 +120,19 @@ Drawings.prototype.recalculateCenter = function() {
   // dynamically generated things and line wrapping.
 
   this.centerCoordX = (
-//    (gootAlias("#header").offset() || {left:0}).left ||
-//    (gootAlias(".header").offset() || {left:0}).left ||
-//    (gootAlias(".inner").offset()  || {left:0}).left ||
-//    (gootAlias(".content").offset()|| {left:0}).left ||
-//    (gootAlias("#content").offset()|| {left:0}).left ||
+//    (gliiimAlias("#header").offset() || {left:0}).left ||
+//    (gliiimAlias(".header").offset() || {left:0}).left ||
+//    (gliiimAlias(".inner").offset()  || {left:0}).left ||
+//    (gliiimAlias(".content").offset()|| {left:0}).left ||
+//    (gliiimAlias("#content").offset()|| {left:0}).left ||
 //
 //    // hackernews
-//    (gootAlias("body>center>table").offset()||{left: 0}).left ||
+//    (gliiimAlias("body>center>table").offset()||{left: 0}).left ||
 //    // table-based layouts
-//    (gootAlias("body>table").offset()||{left: 0}).left ||
+//    (gliiimAlias("body>table").offset()||{left: 0}).left ||
 //
 //    // gogole results pages
-//    (gootAlias("#center_col").offset()||{left:0}).left ||
+//    (gliiimAlias("#center_col").offset()||{left:0}).left ||
 //
 //    (this.canvas.width/2)
 		  0

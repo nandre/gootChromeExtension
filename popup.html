@@ -5,7 +5,7 @@
 	
 	<script src="bootstrap/js/jquery.js"></script>
 	<script src="bootstrap/js/jquery-ui.js"></script>	
-	<script src="goot_commons.js"></script>
+	<script src="gliiim_commons.js"></script>
     <script src="popup.js"></script>
     <script src="history/history.js"></script>
 	<script src="fb.js"></script>
@@ -19,62 +19,62 @@
   <body>
   	  
   	  <div class="container-fluid">
-  	  	<div class="row" id="goot-topbar-connection">
-		  <div class="col-xs-8" id="goot-hi"></div>
-		  <div class="col-xs-4"><a class="goot-btn-link" id="disconnect_btn" href="#" style="display: none;">Gliiim me out</a></div>
-		  <div class="col-xs-offset-8 col-xs-4"><a class="goot-btn-link" id="goot-connect-zone-btn" href="#">Gliiim me in</a></div>
+  	  	<div class="row" id="gliiim-topbar-connection">
+		  <div class="col-xs-8" id="gliiim-hi"></div>
+		  <div class="col-xs-4"><a class="gliiim-btn-link" id="disconnect_btn" href="#" style="display: none;">Gliiim me out</a></div>
+		  <div class="col-xs-offset-8 col-xs-4"><a class="gliiim-btn-link" id="gliiim-connect-zone-btn" href="#">Gliiim me in</a></div>
 		</div>
 
-		<div class="row" id="goot-navbar-menu">
-			<div id="goot-menu-options" style="display : none;">
-				<button class="goot-menu-btn" id="goot-tuto-menu-btn">
+		<div class="row" id="gliiim-navbar-menu">
+			<div id="gliiim-menu-options" style="display : none;">
+				<button class="gliiim-menu-btn" id="gliiim-tuto-menu-btn">
  				</button>
- 				<button class="goot-menu-btn" id="goot-tower-menu-btn">
+ 				<button class="gliiim-menu-btn" id="gliiim-tower-menu-btn">
  				</button>
- 				<button class="goot-menu-btn" id="goot-share-menu-btn">
+ 				<button class="gliiim-menu-btn" id="gliiim-share-menu-btn">
  				</button>
- 				<button class="goot-menu-btn" id="goot-comment-menu-btn">
+ 				<button class="gliiim-menu-btn" id="gliiim-comment-menu-btn">
  				</button>
 			</div>
-			<div class="goot-menu-contextual" id="goot-menu-contextual-comment" style="display : none;">
-				<button class="goot-menu-btn" id="goot-tuto-menu-btn">
+			<div class="gliiim-menu-contextual" id="gliiim-menu-contextual-comment" style="display : none;">
+				<button class="gliiim-menu-btn" id="gliiim-tuto-menu-btn">
  				</button>
- 				<button class="goot-menu-btn long-btn" id="goot-comment-menu-long-btn">
+ 				<button class="gliiim-menu-btn long-btn" id="gliiim-comment-menu-long-btn">
  						<span class="text-btn">Comments</span>
  				</button>
 			</div>
-			<div class="goot-menu-contextual" id="goot-menu-contextual-share" style="display : none;">
-				<button class="goot-menu-btn" id="goot-tuto-menu-btn">
+			<div class="gliiim-menu-contextual" id="gliiim-menu-contextual-share" style="display : none;">
+				<button class="gliiim-menu-btn" id="gliiim-tuto-menu-btn">
  				</button>
- 				<button class="goot-menu-btn long-btn" id="goot-share-menu-long-btn">
+ 				<button class="gliiim-menu-btn long-btn" id="gliiim-share-menu-long-btn">
  						<span class="text-btn">Share</span>
  				</button>
 			</div>
-			<div class="goot-menu-contextual" id="goot-menu-contextual-tower" style="display : none;">
-				<button class="goot-menu-btn" id="goot-tuto-menu-btn">
+			<div class="gliiim-menu-contextual" id="gliiim-menu-contextual-tower" style="display : none;">
+				<button class="gliiim-menu-btn" id="gliiim-tuto-menu-btn">
  				</button>
- 				<button class="goot-menu-btn long-btn" id="goot-tower-menu-long-btn">
+ 				<button class="gliiim-menu-btn long-btn" id="gliiim-tower-menu-long-btn">
  						<span class="text-btn">My Gliim</span>
  				</button>
 			</div>
-			<div id="goot-fix-menu-btn">
-				<button class="goot-menu-btn" id="goot-main-menu-btn" style="display : none;">
+			<div id="gliiim-fix-menu-btn">
+				<button class="gliiim-menu-btn" id="gliiim-main-menu-btn" style="display : none;">
  				</button>
 			</div>
 		</div>
 		
-		<div class="row" id="goot-content">
+		<div class="row" id="gliiim-content">
 		
 			<div id="sub-menu-login-all" style="display : none;">
 				<div class="row">
-					<div class="col-xs-12" id="sub-menu-login-goot">
+					<div class="col-xs-12" id="sub-menu-login-gliiim">
 						<!-- Done in ajax -->
 						<div class="col-xs-6">
-							<input class="goot-log-input" type="text" id="username"	name="username"	placeholder=" email">
-							<input class="goot-log-input" type="password" id="password" name="password" placeholder=" password">
+							<input class="gliiim-log-input" type="text" id="username"	name="username"	placeholder=" email">
+							<input class="gliiim-log-input" type="password" id="password" name="password" placeholder=" password">
 						</div>
 						<div class="col-xs-offset-2 col-xs-4">
-							<button class="goot-btn" id="connect_btn">
+							<button class="gliiim-btn" id="connect_btn">
 								Connection
 							</button>
 						</div>
@@ -83,88 +83,88 @@
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-1"><p>or</p></div> 
 					<div class="col-xs-10" id="sub-menu-login-fb">
-						<a class="goot-btn-link" style="with :100px; margin-left: 15px" id="fb_btn" target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=430736073677176&response_type=token&scope=email&redirect_uri=http://goot.outsidethecircle.eu/facebookUser/syncFacebookUser.gsp">Connect with Facebook</a>
+						<a class="gliiim-btn-link" style="with :100px; margin-left: 15px" id="fb_btn" target="_blank" href="https://www.facebook.com/dialog/oauth?client_id=430736073677176&response_type=token&scope=email&redirect_uri=http://gliiim.outsidethecircle.eu/facebookUser/syncFacebookUser.gsp">Connect with Facebook</a>
 	            	</div>
             	</div>
         	</div>
         		
-			<div id="goot-comment-menu" style="display : none;">
-				<div class="row goot-content-title" >
+			<div id="gliiim-comment-menu" style="display : none;">
+				<div class="row gliiim-content-title" >
 					Comment this page
 				</div>
 				<div class="row">
-					<button class="goot-standard-btn" id="record-comment-btn">Add a comment</button>
+					<button class="gliiim-standard-btn" id="record-comment-btn">Add a comment</button>
 				</div>
-				<div class="row goot-content-text" id="goot-user-comments-txt" >
+				<div class="row gliiim-content-text" id="gliiim-user-comments-txt" >
 					Your comments
 				</div>
-				<div class="row goot-content-text" id="goot-user-no-comments" style="display: none;">You haven't commented this page yet.</div>
-				<div class="row goot-content-text" id="goot-user-comments-table"></div>
-				<div class="row goot-content-title">
+				<div class="row gliiim-content-text" id="gliiim-user-no-comments" style="display: none;">You haven't commented this page yet.</div>
+				<div class="row gliiim-content-text" id="gliiim-user-comments-table"></div>
+				<div class="row gliiim-content-title">
 					Comments
 				</div>
-				<div class="row goot-content-text" id="goot-friends-comments-txt" >
+				<div class="row gliiim-content-text" id="gliiim-friends-comments-txt" >
 					Your friends comments
 				</div>
-				<div class="row goot-content-text" id="goot-friends-no-comments" style="display: none;">Your friends haven't commented this page yet.</div>
-				<div class="row goot-content-text" id="goot-friends-comments-table">
+				<div class="row gliiim-content-text" id="gliiim-friends-no-comments" style="display: none;">Your friends haven't commented this page yet.</div>
+				<div class="row gliiim-content-text" id="gliiim-friends-comments-table">
 				</div>
 			</div>
 			
-			<div id="goot-share-menu" style="display : none;">
-				<div id="goot-qrcode-page">
-					<div class="row goot-content-title" >
+			<div id="gliiim-share-menu" style="display : none;">
+				<div id="gliiim-qrcode-page">
+					<div class="row gliiim-content-title" >
 						Share this page
 					</div>
 					<div class="row text-align" id="contentType"></div>
-					<div class="row" id="goot-current-shared-link">
+					<div class="row" id="gliiim-current-shared-link">
 					</div>
 					<div class="row text-align">
-						<button class="goot-standard-btn" id="goot-link-send-friend">Gliiim friend</button>
+						<button class="gliiim-standard-btn" id="gliiim-link-send-friend">Gliiim friend</button>
 					</div>
 					<div class="row text-align">
 						<img id="QRCodeImage" alt="Scan me if you Gliiim !" src=""/>
 					</div>
 				</div>
-				<div id="goot-link-send-friend-page">
-					<div class="row" id="goot-friends-list">
+				<div id="gliiim-link-send-friend-page">
+					<div class="row" id="gliiim-friends-list">
 					</div>
 				</div>
 			</div>
 			
-			<div id="goot-friends-menu" style="display : none;">
-				<div class="row goot-content-title">
+			<div id="gliiim-friends-menu" style="display : none;">
+				<div class="row gliiim-content-title">
 					Send to a friend
 				</div>
-				<div class="row" id="goot-user-no-friends" style="display : none">You don't have any Gliim friends yet</div>
-				<div class="row" id="goot-user-friends-table"></div>
-				<div class="row goot-content-title">
+				<div class="row" id="gliiim-user-no-friends" style="display : none">You don't have any Gliim friends yet</div>
+				<div class="row" id="gliiim-user-friends-table"></div>
+				<div class="row gliiim-content-title">
 					Add a friend
 				</div>
 				<div class="row text-align">
-					<input type="text" placeholder=" email" class="goot-log-input" name="goot-friend-email" id="goot-friend-email"></input>
+					<input type="text" placeholder=" email" class="gliiim-log-input" name="gliiim-friend-email" id="gliiim-friend-email"></input>
 				</div>
 				<div class="row text-align">
-					<button class="goot-standard-btn" id="goot-friend-add">Add a Gliim friend</button>
+					<button class="gliiim-standard-btn" id="gliiim-friend-add">Add a Gliim friend</button>
 				</div>
 			</div>
 			
-			<div id="goot-tower-menu" style="display : none;">
-				<div class="row goot-content-title" >
+			<div id="gliiim-tower-menu" style="display : none;">
+				<div class="row gliiim-content-title" >
 					My playlist
 				</div>
 				<div class="row">
-					<button class="goot-standard-btn" id="add-goot-btn">Add to my playlist</button>
+					<button class="gliiim-standard-btn" id="add-gliiim-btn">Add to my playlist</button>
 				</div>
-				<div class="row goot-content-text" id="goot-user-links-txt" >
+				<div class="row gliiim-content-text" id="gliiim-user-links-txt" >
 					Your Links
 				</div>
-				<div class="row goot-content-text" id="goot-user-no-links" style="display: none;">You haven't added any favorite yet.</div>
-				<div class="row goot-content-text" id="goot-user-links-table"></div>
+				<div class="row gliiim-content-text" id="gliiim-user-no-links" style="display: none;">You haven't added any favorite yet.</div>
+				<div class="row gliiim-content-text" id="gliiim-user-links-table"></div>
 			</div>
 			
-			<div id="goot-tuto-menu" style="display : none;">
-				<div class="row goot-content-title" >
+			<div id="gliiim-tuto-menu" style="display : none;">
+				<div class="row gliiim-content-title" >
 					How to use Gliiim
 				</div>
 				<div class="row" style="margin-left : 15px; margin-right : 15px;">
@@ -176,7 +176,7 @@
 		</div>
 		
 			
-		<div class="row" id="goot-footer">
+		<div class="row" id="gliiim-footer">
 			<div class="col-xs-12"></div>
 		</div>
 		

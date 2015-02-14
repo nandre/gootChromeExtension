@@ -4,7 +4,7 @@
 // TODO: handle timeouts
 function ajaxRequest(url, data, cb) {
   // just like jQuery.getJSON but unlike jquery, this handles timeouts in a sane way.
-  return gootAlias.ajax({
+  return gliiimAlias.ajax({
     url: url,
     //dataType: 'json',
     dataType: 'jsonp',

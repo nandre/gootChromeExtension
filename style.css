@@ -13,14 +13,14 @@
      color: white;
  }
  
- #goot-content {
+ #gliiim-content {
  	display : block;
  	padding-top : 10px;
  	padding-left : 5px;
  }
 	
 	
-  #goot-footer {
+  #gliiim-footer {
   	display : block;
     width: 328px;
     height: 58px;
@@ -29,26 +29,26 @@
 	background-size: 100% 100%;
   }
   
-  .goot-btn-link { 
+  .gliiim-btn-link { 
   	padding : 1px;
     border: 1px solid;
     border-radius: 4px;
     color: white;
   }
   
-  .goot-btn-link:visited {
+  .gliiim-btn-link:visited {
     background-color : #004358;
     text-decoration : none !important; 
     color: white;
 }
 	  
-  .goot-btn-link:hover {
+  .gliiim-btn-link:hover {
     background-color : #004358;
     text-decoration : none;
     color: white;
 }
 
-.goot-btn-link:active {
+.gliiim-btn-link:active {
     background-color : #004358;
     text-decoration : none;
     color: white;
@@ -56,19 +56,19 @@
 
 
 
-.goot-log-input { 
+.gliiim-log-input { 
 	border: 0;
 	margin-bottom : 3px;
 	background-color : #00BCFF;
 	box-shadow: -8px 8px 0px -7px white, 0px 0px 0px 0px white;
 }
 
-.goot-log-input:focus {
+.gliiim-log-input:focus {
   outline: none;
   box-shadow: -8px 8px 0px -7px #FF8400, 0px 0px 0px 0px #FF8400;
 }
 
-.goot-btn {
+.gliiim-btn {
 	background-color : #FF8400;
 	border-radius: 4px 4px 4px 4px;
 	-moz-border-radius: 4px 4px 4px 4px;
@@ -79,58 +79,58 @@
 	text-decoration: none;
 }
 
-.goot-btn  {
+.gliiim-btn  {
   text-decoration: none;
 }
 
-.goot-menu-btn {
+.gliiim-menu-btn {
   border: none;
   height: 30px; 
   cursor: pointer;
 }
 
-#goot-main-menu-btn {
+#gliiim-main-menu-btn {
 	width: 30px;
 	background:url(img/menu.png) no-repeat;
 }
 
-#goot-main-menu-btn:hover {
+#gliiim-main-menu-btn:hover {
 	background:url(img/menu_hover.png) no-repeat;
 }
 
-#goot-comment-menu-btn {
+#gliiim-comment-menu-btn {
 	width: 70px;
 	background:url(img/comment.png) no-repeat;
 }
 
-#goot-comment-menu-btn:hover {
+#gliiim-comment-menu-btn:hover {
 	background:url(img/comment_hover.png) no-repeat;
 }
 
-#goot-share-menu-btn {
+#gliiim-share-menu-btn {
 	width: 70px;
 	background:url(img/share.png) no-repeat;
 }
 
-#goot-share-menu-btn:hover {
+#gliiim-share-menu-btn:hover {
 	background:url(img/share_hover.png) no-repeat;
 }
 
-#goot-tower-menu-btn {
+#gliiim-tower-menu-btn {
 	width: 70px;
 	background:url(img/tower.png) no-repeat;
 }
 
-#goot-tower-menu-btn:hover {
+#gliiim-tower-menu-btn:hover {
 	background:url(img/tower_hover.png) no-repeat;
 }
 
-#goot-tuto-menu-btn {
+#gliiim-tuto-menu-btn {
 	width: 30px;
 	background:url(img/tuto.png) no-repeat;
 }
 
-#goot-tuto-menu-btn:hover {
+#gliiim-tuto-menu-btn:hover {
 	background:url(img/tuto_hover.png) no-repeat;
 }
 
@@ -154,35 +154,35 @@
    color:    white;
 }
 
-#goot-navbar-menu { 
+#gliiim-navbar-menu { 
 	margin-top:5px;	
 }
 
-#goot-menu-options { 
+#gliiim-menu-options { 
 	float : left;
 	margin-left : 15px;
 	width : 255px;
 }
 
-.goot-menu-contextual{
+.gliiim-menu-contextual{
 	float : left;
 	margin-left : 3px;
 	width : 265px;
 }
 
-#goot-fix-menu-btn {
+#gliiim-fix-menu-btn {
 	float : right;
 	width : 30px;
 	margin-right : 27px;
 }
 
- .goot-content-title { 
+ .gliiim-content-title { 
  	margin-left: 10px;
  	font-size: 18px;
  	font-weight: bold;
  }
  
- .goot-content-text { 
+ .gliiim-content-text { 
  	margin-left: 10px;
  }
  
@@ -197,48 +197,48 @@
 	bottom: 6.75px;
 }
 
-.goot-standard-btn { 
+.gliiim-standard-btn { 
 	background-color : #FF8400;
 	border-radius: 4px;
 	margin-top : 2px;
 	margin-left: 30px;
 }
 
-.goot-standard-btn:hover { 
+.gliiim-standard-btn:hover { 
 	background-color : #FF8400;
 }
 
-#goot-user-no-comments {}
+#gliiim-user-no-comments {}
 
-#goot-user-no-friends { margin-left : 15px;}
+#gliiim-user-no-friends { margin-left : 15px;}
 
 .fix-center { margin-left : -7px;}
 
- #goot-comment-menu-long-btn {
+ #gliiim-comment-menu-long-btn {
  	width: 230px;
 	background:url(img/comment-long.png) no-repeat;
   }
   
-   #goot-comment-menu-long-btn:hover {
+   #gliiim-comment-menu-long-btn:hover {
 	background:url(img/comment-long-hover.png) no-repeat;
   }
   
-  #goot-share-menu-long-btn {
+  #gliiim-share-menu-long-btn {
  	width: 230px;
 	background:url(img/share-long.png) no-repeat;
   }
   
-  #goot-share-menu-long-btn:hover {
+  #gliiim-share-menu-long-btn:hover {
  	width: 230px;
 	background:url(img/share-long-hover.png) no-repeat;
   }
   
-  #goot-tower-menu-long-btn {
+  #gliiim-tower-menu-long-btn {
  	width: 230px;
 	background:url(img/tower-long.png) no-repeat;
   }
   
-  #goot-tower-menu-long-btn:hover {
+  #gliiim-tower-menu-long-btn:hover {
  	width: 230px;
 	background:url(img/tower-long-hover.png) no-repeat;
   }
@@ -247,21 +247,21 @@
   	text-align : center;
   }
   
-  #goot-current-shared-link {
+  #gliiim-current-shared-link {
   	margin-left : 20px;
   }
   
-  #goot-link-send-friend {
+  #gliiim-link-send-friend {
   	margin-left : -7px;
   }
   
-  .goot-standard-text-input { 
+  .gliiim-standard-text-input { 
   	border-radius: 4px;
   	color : #FF8400;
   	margin : 5px;
   }
   
-  #goot-friend-add { 
+  #gliiim-friend-add { 
   	margin-left : -7px;
   }
 li {

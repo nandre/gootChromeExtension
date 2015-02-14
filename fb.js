@@ -1,12 +1,12 @@
-var gootAlias = jQuery.noConflict();
+var gliiimAlias = jQuery.noConflict();
 
 function displayUser(user) {
 	if(user && (user.first_name != null)){
-		gootAlias('#fb_btn').hide();
-		gootAlias('#sub-menu-login-all').hide();
-		gootAlias('#disconnect_btn').show();
-		gootAlias('#goot-hi').append('<p style="color : white;">Hi ' + user.first_name + '!</p>');
-		gootAlias('#goot-connect-zone-btn').hide();
+		gliiimAlias('#fb_btn').hide();
+		gliiimAlias('#sub-menu-login-all').hide();
+		gliiimAlias('#disconnect_btn').show();
+		gliiimAlias('#gliiim-hi').append('<p style="color : white;">Hi ' + user.first_name + '!</p>');
+		gliiimAlias('#gliiim-connect-zone-btn').hide();
 	} else {
 		// session lost on fb
 		localStorage.removeItem('accessToken');
@@ -15,7 +15,7 @@ function displayUser(user) {
     console.log(user);
 }
 
-gootAlias(document).ready(function(){
+gliiimAlias(document).ready(function(){
 	
 	    if (localStorage.accessToken) {
 			//in this case, user is connected with facebook
@@ -27,7 +27,7 @@ gootAlias(document).ready(function(){
             document.body.appendChild(script);
         } else {
 			//hide disconnection button 
-			gootAlias('#disconnect_btn').hide();
+			gliiimAlias('#disconnect_btn').hide();
 		}
 
 });

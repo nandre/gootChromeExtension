@@ -1,2 +1,2 @@
-gootChromeExtension
+gliiimChromeExtension
 ===================

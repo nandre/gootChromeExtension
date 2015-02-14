@@ -18,7 +18,7 @@ function hex2rgb(hex) {
 
 function Picker(onPickColor, onPickBrush) {
   var self = this;
-  this.colorsJq = gootAlias("<div id='colorsJq-picker'>").css({
+  this.colorsJq = gliiimAlias("<div id='colorsJq-picker'>").css({
     position: "fixed",
     cursor: 'pointer',
     "z-index": "100001",
@@ -27,11 +27,11 @@ function Picker(onPickColor, onPickBrush) {
     width: "32px",
     border: 'solid 1px #000'
   });
-  var chosenColor = gootAlias();
+  var chosenColor = gliiimAlias();
   // different brush colors!
 
   // A true color picker!
-  var truecolorpicker = gootAlias("<div id='truecolorpicker'>").css({"background-color": "#fff",
+  var truecolorpicker = gliiimAlias("<div id='truecolorpicker'>").css({"background-color": "#fff",
                                         "background-image":
                                         "url(./img/color-picker.png)",
                                         "color": "#000",
@@ -39,7 +39,7 @@ function Picker(onPickColor, onPickBrush) {
                                         'font-size': '300%',
                                         'text-align': 'center',
                                         width: 32, height: 32});
-  var value_holder = gootAlias("<input>");
+  var value_holder = gliiimAlias("<input>");
   function make_colorpicker_active(){
     var color = value_holder.get(0).value;
     truecolorpicker.css({"background-color":color});
@@ -66,7 +66,7 @@ function Picker(onPickColor, onPickBrush) {
   // A nice small palette for the rest of em!
   var colors = ["#000", "#fff", "#e50", "#fa0", "#1ba", "#e07", "#ab0"]
     .map(function(color) {
-      var colorjq = gootAlias("<div id='colorjq-picker2'>").css({"background-color": color,
+      var colorjq = gliiimAlias("<div id='colorjq-picker2'>").css({"background-color": color,
                                     'color': (color=="#000"?"#fff":"#000"),
                                     'line-height': '32px',
                                     'font-size': '300%',
@@ -85,8 +85,8 @@ function Picker(onPickColor, onPickBrush) {
   colors[0].click();
 
   // different brush sizes!
-  var chosenBrush = gootAlias();
-  this.brushesJq = gootAlias("<div id='brushesjq-picker'>")
+  var chosenBrush = gliiimAlias();
+  this.brushesJq = gliiimAlias("<div id='brushesjq-picker'>")
         .css({
             position: "fixed",
             cursor: 'pointer',
@@ -101,7 +101,7 @@ function Picker(onPickColor, onPickBrush) {
           });
   var brushes = [1,2,5,10,15,20]
     .map(function(size) {
-        var brushJq = gootAlias("<div id='brushjq-picker'>")
+        var brushJq = gliiimAlias("<div id='brushjq-picker'>")
               .css({
                 display: 'block',
                 'float': 'left',
@@ -109,7 +109,7 @@ function Picker(onPickColor, onPickBrush) {
                 padding:0,
                 height: "32px"
               });
-        brushJq.append(gootAlias("<div>")
+        brushJq.append(gliiimAlias("<div>")
             .css({
                 position: "absolute",
                 height: size+"px",
@@ -139,7 +139,7 @@ Picker.prototype.del = function() {
 };
 
 Picker.prototype.show = function() {
-  this.brushesJq.hide().appendTo(gootAlias("#goot_color_picker")).slideDown('medium');
-  this.colorsJq.hide().appendTo(gootAlias("#goot_color_picker")).slideDown('medium');
+  this.brushesJq.hide().appendTo(gliiimAlias("#gliiim_color_picker")).slideDown('medium');
+  this.colorsJq.hide().appendTo(gliiimAlias("#gliiim_color_picker")).slideDown('medium');
 };
 

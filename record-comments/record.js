@@ -1,9 +1,9 @@
 navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.getUserMedia;
 window.URL = window.URL || window.webkitURL;
 
-window.serverURL = "http://goot.outsidethecircle.eu/";
+window.serverURL = "http://gliiim.outsidethecircle.eu/";
 
-var gootAlias = jQuery.noConflict();
+var gliiimAlias = jQuery.noConflict();
 
 var app = null;
 var video = null; 
@@ -63,16 +63,16 @@ function gotStream(stream) {
   stream.onended = noStream;
 
   video.onloadedmetadata = function(e) { //won't fire on chrome...
-	  gootAlias('#splash').hide();
-	  gootAlias('#goot-app-video').show();
+	  gliiimAlias('#splash').hide();
+	  gliiimAlias('#gliiim-app-video').show();
   };
 
   // Since video.onloadedmetadata isn't firing for getUserMedia video, we have
   // to fake it.
   setTimeout(function() {
 	console.log('show video');
-    gootAlias('#splash').hide();
-    gootAlias('#goot-app-video').show();
+    gliiimAlias('#splash').hide();
+    gliiimAlias('#gliiim-app-video').show();
   }, 50);
 }
 
@@ -141,7 +141,7 @@ function snapshot() {
 		    // "image/webp" works in Chrome.
 		    // Other browsers will fall back to image/png.
 		    
-//		    gootAlias("#goot-snapshot").width(w); // Units are assumed to be pixels
+//		    gliiimAlias("#gliiim-snapshot").width(w); // Units are assumed to be pixels
 		    var url = canvas[0].toDataURL('image/png');
 		    var newImg = document.createElement("img"); // create img tag
 		    newImg.src = url;
@@ -149,15 +149,15 @@ function snapshot() {
 		    newImg.setAttribute("class", "snapshot_image");
 
 		    newImg.onclick = function(){
-		    	gootAlias('.goot_selected').removeClass('goot_selected_goot');
-		    	gootAlias(this).addClass('goot_selected');
-		    	gootAlias('#add-image-comment-btn').show();
-		    	gootAlias('#imageToSave').val(gootAlias(this).attr('src'));
+		    	gliiimAlias('.gliiim_selected').removeClass('gliiim_selected_gliiim');
+		    	gliiimAlias(this).addClass('gliiim_selected');
+		    	gliiimAlias('#add-image-comment-btn').show();
+		    	gliiimAlias('#imageToSave').val(gliiimAlias(this).attr('src'));
 		    };
 		    
 		    snapshotIncrementalId += 1;
 
-		    gootAlias("#goot-snapshot").prepend(newImg);
+		    gliiimAlias("#gliiim-snapshot").prepend(newImg);
 
     }
   }
@@ -171,12 +171,12 @@ function init_camera(el) {
   //el.onclick = capture; //to pop images up everywhere in the page
   navigator.getUserMedia({video: true}, gotStream, noStream);
  
-  gootAlias("#init-camera-btn").hide();
+  gliiimAlias("#init-camera-btn").hide();
   //associate action to take snapshots
-  gootAlias("#goot-snapshot-btn").click(function(){ 
+  gliiimAlias("#gliiim-snapshot-btn").click(function(){ 
 	  snapshot();
   });
-  gootAlias("#goot-snapshot-btn").show();
+  gliiimAlias("#gliiim-snapshot-btn").show();
   
 }
 
@@ -185,36 +185,36 @@ function init_camera(el) {
  * @returns
  */
 function addRecordBar(){
-		gootAlias("body").prepend("<div id='goot_color_picker'></div>");
+		gliiimAlias("body").prepend("<div id='gliiim_color_picker'></div>");
 		
-		gootAlias("body").prepend("<div id='goot_nav'></div>");
+		gliiimAlias("body").prepend("<div id='gliiim_nav'></div>");
 		
-		var stickyNavTop = gootAlias('#goot_nav').offset().top;
+		var stickyNavTop = gliiimAlias('#gliiim_nav').offset().top;
 
 		var stickyNav = function(){
-			var scrollTop = gootAlias(window).scrollTop();
+			var scrollTop = gliiimAlias(window).scrollTop();
 			     
 			if (scrollTop > stickyNavTop) { 
-			    gootAlias('#goot_nav').addClass('sticky');
+			    gliiimAlias('#gliiim_nav').addClass('sticky');
 			} else {
-			    gootAlias('#goot_nav').removeClass('sticky'); 
+			    gliiimAlias('#gliiim_nav').removeClass('sticky'); 
 			}
 			
 			if (scrollTop > stickyNavTop) { 
-			    gootAlias('#goot_color_picker').addClass('sticky_picker');
+			    gliiimAlias('#gliiim_color_picker').addClass('sticky_picker');
 			} else {
-			    gootAlias('#goot_color_picker').removeClass('sticky_picker'); 
+			    gliiimAlias('#gliiim_color_picker').removeClass('sticky_picker'); 
 			}	
 			
 		};
 
 		stickyNav();
 
-		gootAlias(window).scroll(function() {
+		gliiimAlias(window).scroll(function() {
 			stickyNav();
 		});
 		
-		gootAlias("#goot_nav").load(chrome.extension.getURL("record-comments/record.html"), function(){
+		gliiimAlias("#gliiim_nav").load(chrome.extension.getURL("record-comments/record.html"), function(){
 			initVars();
 		});
 		
@@ -224,11 +224,11 @@ function addRecordBar(){
  * 
  */
 function initVars(){
-	 app = gootAlias('#goot-app-video');
-	 video = gootAlias('#monitor');
-	 canvas = gootAlias('#photo');
-	 effect = gootAlias('#effect');
-	 gallery = gootAlias('#gallery');
+	 app = gliiimAlias('#gliiim-app-video');
+	 video = gliiimAlias('#monitor');
+	 canvas = gliiimAlias('#photo');
+	 effect = gliiimAlias('#effect');
+	 gallery = gliiimAlias('#gallery');
 	 ctx = canvas[0].getContext('2d');
 	 
 	 // get values from the extension 
@@ -247,29 +247,29 @@ function initVars(){
 		 }
 	 });	 
 	 
-	gootAlias('#init-camera-btn').click(function(){ 
+	gliiimAlias('#init-camera-btn').click(function(){ 
 		console.log("init camera clicked");
 		init_camera(this);
 	});
 	
-	gootAlias('#monitor').click(function(){ 
+	gliiimAlias('#monitor').click(function(){ 
 		console.log("video monitor clicked");
 		changeFilter(this);
 	});
 	
-	gootAlias('#add-image-comment-btn').click(function(){ 
+	gliiimAlias('#add-image-comment-btn').click(function(){ 
 		console.log("save image comment button clicked");
 		addImageCommentToPage();
 	});
 	
 	
-	gootAlias('#add-text-comment-btn').click(function(){ 
+	gliiimAlias('#add-text-comment-btn').click(function(){ 
 		console.log("save text comment button clicked");
 		addTextCommentToPage();
 	});
 	
 	
-	gootAlias('#init-drawing-btn').click(function(){ 
+	gliiimAlias('#init-drawing-btn').click(function(){ 
 		console.log("Draw on page button clicked");
 		init_drawings();
 	});
@@ -280,7 +280,7 @@ function initVars(){
 }
 
 //INITIALIZATION OF COMMENTS RECORDING
-gootAlias(document).ready(function(){
+gliiimAlias(document).ready(function(){
 	addRecordBar();
 });
 
@@ -299,15 +299,15 @@ function addImageCommentToPage(){
 	var currentTabUrl = document.URL;
 	document.cookie="JSESSIONID=" + JSESSIONID;
 	
-	var image = gootAlias('#imageToSave').val();
+	var image = gliiimAlias('#imageToSave').val();
 	console.log("current tab url : " + currentTabUrl);
 	console.log("image blob : " + image);
 	
 	
 	var data = { image : image, tabUrl : currentTabUrl};
-	var url = "http://goot.outsidethecircle.eu/plugin/comment/image";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/comment/image";
 	
-	gootAjaxCall(url, data, saveImageCallback);
+	gliiimAjaxCall(url, data, saveImageCallback);
 }
 
 
@@ -316,7 +316,7 @@ function addTextCommentToPage(){
 	var currentTabUrl = document.URL;
 	document.cookie="JSESSIONID=" + JSESSIONID;
 	
-	var text = gootAlias('#text-comment').val();
+	var text = gliiimAlias('#text-comment').val();
 	if(text == null || text.length == 0){
 		alert("Please enter text comment");
 		return;
@@ -326,9 +326,9 @@ function addTextCommentToPage(){
 	console.log("text : " + text);
 	
 	var data = { text : text, tabUrl : currentTabUrl};
-	var url = "http://goot.outsidethecircle.eu/plugin/comment/text";
+	var url = "http://gliiim.outsidethecircle.eu/plugin/comment/text";
 	
-	gootAjaxCall(url, data, saveTextCallback);
+	gliiimAjaxCall(url, data, saveTextCallback);
 	
 }
 

@@ -8,7 +8,7 @@ function onRequest(request, sender, sendResponse) {
 	
 	//save the accessToken in extension localStorage (useful for adding data on facebook)
 	localStorage.accessToken = accessToken;
-	//save the JSESSIONID in the localStorage (useful for adding data on goot)
+	//save the JSESSIONID in the localStorage (useful for adding data on gliiim)
 	localStorage.JESSSIONID = JSESSIONID;
 	//save the JSESSIONID in the cookie
 	document.cookie="JSESSIONID=" + JSESSIONID;
@@ -34,20 +34,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete') {
         // Execute some script when the page is fully (DOM) ready
-    	chrome.tabs.executeScript(null, {file: "goot_commons.js"});
+    	chrome.tabs.executeScript(null, {file: "gliiim_commons.js"});
     }
 });
 
 //CONTEXTUAL MENUS
 chrome.contextMenus.create({
-    id: "gootPageContextMenu",  
-    title: "Add a GooT comment to whole page",
+    id: "gliiimPageContextMenu",  
+    title: "Add a Gliiim comment to whole page",
     contexts: ["all"]
 });
 
 //chrome.contextMenus.create({
-//    id: "gootSelectionContextMenu",  
-//    title: "Add a GooT comment to selected element",
+//    id: "gliiimSelectionContextMenu",  
+//    title: "Add a Gliiim comment to selected element",
 //    contexts:["selection"],
 //    onclick: addContextualComment
 //});
@@ -55,7 +55,7 @@ chrome.contextMenus.create({
 /* Register a listener for the `onClicked` event */
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     if (tab) {
-    	if(info.menuItemId == "gootPageContextMenu"){
+    	if(info.menuItemId == "gliiimPageContextMenu"){
 	        /* Inject the code into the current tab */
 	    	chrome.tabs.executeScript(null, {file: "record-comments/record.js"});
     	}

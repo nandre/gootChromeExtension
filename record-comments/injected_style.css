@@ -7,7 +7,7 @@ button {
 		font-family:"Advent Pro",sans-serif;
 }
 
-#goot_nav { 
+#gliiim_nav { 
 	padding: 25px 0;
 	background-color : #00BCFF;
     color: white;
@@ -20,7 +20,7 @@ button {
 	text-align : center;	
 }
 
-.goot-standard-btn { 
+.gliiim-standard-btn { 
 	background-color : #FF8400;
 	border-radius: 4px;
 	margin-top : 2px;
@@ -28,11 +28,11 @@ button {
 	color: white;
 }
 
-.goot-standard-btn:hover { 
+.gliiim-standard-btn:hover { 
 	background-color : #FF8400;
 }
 
-  .goot-standard-text-input { 
+  .gliiim-standard-text-input { 
   	border-radius: 4px;
   	color : #FF8400;
   	margin : 5px;
@@ -60,7 +60,7 @@ button {
 }
 
 img.snapshot_image{border:solid 2px grey; margin:10px;}
-.goot_selected {
+.gliiim_selected {
     box-shadow:0px 12px 22px 1px #333;
 }
 
@@ -71,7 +71,7 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
  	float : left;
  }
  
-  #goot-snapshot { 
+  #gliiim-snapshot { 
  	position : relative;
  	width : 400px;
  	float : left;
@@ -84,19 +84,19 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
  	float : left;
  }
 
-#goot-left-block {
+#gliiim-left-block {
   display : block;
   width : 500px;
   float: left;
 }
 
-#goot-middle-block {
+#gliiim-middle-block {
   display : block;
   width : 400px;
   float: left;
 }
 
-#goot-right-block { 
+#gliiim-right-block { 
   display : block;
   float: right;
 }
@@ -152,7 +152,7 @@ img.snapshot_image{border:solid 2px grey; margin:10px;}
   float: left;
   height: 75px;
 }
-#goot-video-container {
+#gliiim-video-container {
   padding: 10px 25px 5px 25px;
   background: black;
   border-radius: 4px;

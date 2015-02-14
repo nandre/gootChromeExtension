@@ -1,17 +1,17 @@
-//change jquery alias by brand new one for goot
-var gootAlias = jQuery.noConflict();
+//change jquery alias by brand new one for gliiim
+var gliiimAlias = jQuery.noConflict();
 
 function testInject(){
 	console.log('injection done');
 }
 
-gootAlias(document).ready(function(){ testInject(); });
+gliiimAlias(document).ready(function(){ testInject(); });
 
 
 //ajax function with callback available in both extension and page
-function gootAjaxCall(url, data, callback){ 
+function gliiimAjaxCall(url, data, callback){ 
 	
-	gootAlias.ajax({
+	gliiimAlias.ajax({
 		url: url,
 		dataType: 'json',
 		type:"POST",

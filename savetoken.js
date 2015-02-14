@@ -10,7 +10,7 @@ window.addEventListener("message", function(event) {
 
     console.log("event.data.type : " + event.data.type);
     
-    if (event.data.type && (event.data.type == "GOOT_PAGE_TYPE")) {
+    if (event.data.type && (event.data.type == "GLIIIM_PAGE_TYPE")) {
       console.log("accessToken passed by content script : " + event.data.accessToken);
       console.log("JSESSIONID passed by content script : " + event.data.JSESSIONID);
 	  console.log("All data passed : " + event.data);
